@@ -1,36 +1,24 @@
-import { MinusIcon, AddIcon, ViewOffIcon, ViewIcon } from '@chakra-ui/icons'
-import {
-  Text,
-  Box,
-  Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Portal,
-  useDisclosure,
-} from '@chakra-ui/react'
-import React from 'react'
-import { colorList, initialFilter, TagColors } from './config'
-import { Collapse } from './Sidebar/Collapse'
-import { ColorMenu } from './Tweaks/Visual/ColorMenu'
+import { MinusIcon, ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
+import { Text, Box, Flex, MenuItem, useDisclosure } from '@chakra-ui/react';
+import React from 'react';
+import { colorList, initialFilter, TagColors } from './config';
+import { Collapse } from './Sidebar/Collapse';
 
 export interface TagMenuProps {
-  setTagColors: any
-  tagColors: TagColors
-  setFilter: any
-  filter: typeof initialFilter
-  target: string | null
+  setTagColors: any;
+  tagColors: TagColors;
+  setFilter: any;
+  filter: typeof initialFilter;
+  target: string | null;
 }
 
 export const TagMenu = (props: TagMenuProps) => {
-  const { setTagColors, setFilter, filter, tagColors, target } = props
-  const bl: string[] = filter.tagsBlacklist
-  const wl: string[] = filter.tagsWhitelist
-  const blacklist = bl.indexOf(target as string) > -1
-  const whitelist = wl.indexOf(target as string) > -1
-  const colors = useDisclosure()
+  const { setTagColors, setFilter, filter, tagColors, target } = props;
+  const bl: string[] = filter.tagsBlacklist;
+  const wl: string[] = filter.tagsWhitelist;
+  const blacklist = bl.indexOf(target as string) > -1;
+  const whitelist = wl.indexOf(target as string) > -1;
+  const colors = useDisclosure();
   return (
     <>
       <MenuItem
@@ -60,8 +48,8 @@ export const TagMenu = (props: TagMenuProps) => {
                   Object.fromEntries(
                     Object.keys(curr)
                       .filter((t) => t !== target)
-                      .map((t) => [t, curr[t]]),
-                  ),
+                      .map((t) => [t, curr[t]])
+                  )
                 )
               }
               bgColor={''}
@@ -101,13 +89,13 @@ export const TagMenu = (props: TagMenuProps) => {
               setFilter((filter: typeof initialFilter) => ({
                 ...filter,
                 tagsBlacklist: [...filter.tagsBlacklist, target],
-              }))
-              return
+              }));
+              return;
             }
             setFilter((filter: typeof initialFilter) => ({
               ...filter,
               tagsBlacklist: filter.tagsBlacklist.filter((t) => t !== target),
-            }))
+            }));
           }}
           icon={blacklist ? <MinusIcon /> : <ViewOffIcon />}
         >
@@ -121,13 +109,13 @@ export const TagMenu = (props: TagMenuProps) => {
               setFilter((filter: typeof initialFilter) => ({
                 ...filter,
                 tagsWhitelist: [...filter.tagsWhitelist, target],
-              }))
-              return
+              }));
+              return;
             }
             setFilter((filter: typeof initialFilter) => ({
               ...filter,
               tagsWhitelist: filter.tagsWhitelist.filter((t) => t !== target),
-            }))
+            }));
           }}
           icon={whitelist ? <MinusIcon /> : <ViewIcon />}
         >
@@ -135,5 +123,5 @@ export const TagMenu = (props: TagMenuProps) => {
         </MenuItem>
       )}
     </>
-  )
-}
+  );
+};

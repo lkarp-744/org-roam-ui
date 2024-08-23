@@ -1,4 +1,4 @@
-type Theme = { [theme: string]: { [color: string]: string } }
+type Theme = { [theme: string]: { [color: string]: string } };
 export const themes: Theme = {
   '1337': {
     base0: '#171F24',
@@ -1612,4 +1612,4 @@ export const themes: Theme = {
     'bg-alt': '#383838',
     bg: '#3F3F3F',
   },
-}
+};

@@ -1,94 +1,102 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ChakraProvider, extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
-import { useEffect, useState, useMemo, useContext, useReducer } from 'react'
-import * as d3int from 'd3-interpolate'
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
+import {
+  ChakraProvider,
+  extendTheme,
+  withDefaultColorScheme,
+} from '@chakra-ui/react';
+import { useEffect, useState, useMemo, useContext } from 'react';
+import * as d3int from 'd3-interpolate';
 
-import { ThemeContext } from '../util/themecontext'
-import { usePersistantState } from '../util/persistant-state'
-import { themes } from '../components/themes'
+import { ThemeContext } from '../util/themecontext';
+import { themes } from '../components/themes';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  type Theme = [string, { [color: string]: string }]
-  const initialTheme: Theme = ['one-vibrant', themes['one-vibrant']]
-  const [isInitialized, setIsInitialized] = useState(false)
+  type Theme = [string, { [color: string]: string }];
+  const initialTheme: Theme = ['one-vibrant', themes['one-vibrant']];
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  const [emacsTheme, setEmacsTheme] = useState<Theme>(initialTheme)
-  const [highlightColor, setHighlightColor] = useState('purple.500')
-
-  useEffect(() => {
-    if (isInitialized) {
-      localStorage.setItem('colorTheme', JSON.stringify(emacsTheme))
-    }
-  }, [emacsTheme])
+  const [emacsTheme, setEmacsTheme] = useState<Theme>(initialTheme);
+  const [highlightColor, setHighlightColor] = useState('purple.500');
 
   useEffect(() => {
     if (isInitialized) {
-      localStorage.setItem('highlightColor', JSON.stringify(highlightColor))
+      localStorage.setItem('colorTheme', JSON.stringify(emacsTheme));
     }
-  }, [highlightColor])
+  }, [emacsTheme]);
+
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('highlightColor', JSON.stringify(highlightColor));
+    }
+  }, [highlightColor]);
 
   useEffect(() => {
     setEmacsTheme(
-      JSON.parse(localStorage.getItem('colorTheme') ?? JSON.stringify(initialTheme)) ??
-        initialTheme,
-    )
+      JSON.parse(
+        localStorage.getItem('colorTheme') ?? JSON.stringify(initialTheme)
+      ) ?? initialTheme
+    );
     setHighlightColor(
-      JSON.parse(localStorage.getItem('highlightColor') ?? JSON.stringify(highlightColor)) ??
-        highlightColor,
-    )
-    setIsInitialized(true)
-  }, [])
+      JSON.parse(
+        localStorage.getItem('highlightColor') ?? JSON.stringify(highlightColor)
+      ) ?? highlightColor
+    );
+    setIsInitialized(true);
+  }, []);
 
   const themeObject = {
     emacsTheme: emacsTheme,
     setEmacsTheme: setEmacsTheme,
     highlightColor: highlightColor,
     setHighlightColor: setHighlightColor,
-  }
+  };
   return (
     <ThemeContext.Provider value={themeObject as typeof themeObject}>
       <SubApp>
         <Component {...pageProps} />
       </SubApp>
     </ThemeContext.Provider>
-  )
+  );
 }
 
 function SubApp(props: any) {
-  const { children } = props
-  const { highlightColor, emacsTheme } = useContext(ThemeContext)
-  type Theme = { [color: string]: string }
-  const themeColors: Theme = emacsTheme[1] as Theme
+  const { children } = props;
+  const { highlightColor, emacsTheme } = useContext(ThemeContext);
+  type Theme = { [color: string]: string };
+  const themeColors: Theme = emacsTheme[1] as Theme;
   // yeah it's annoying, should put this someplace more sensible
   const getBorderColor = () => {
     if (highlightColor === 'purple.500') {
-      return `${themeColors['violet']}aa`
+      return `${themeColors['violet']}aa`;
     }
     if (highlightColor === 'pink.500') {
-      return `${themeColors['magenta']}aa`
+      return `${themeColors['magenta']}aa`;
     }
     if (highlightColor === 'blue.500') {
-      return `${themeColors['blue']}aa`
+      return `${themeColors['blue']}aa`;
     }
     if (highlightColor === 'cyan.500') {
-      return `${themeColors['cyan']}aa`
+      return `${themeColors['cyan']}aa`;
     }
     if (highlightColor === 'green.500') {
-      return `${themeColors['green']}aa`
+      return `${themeColors['green']}aa`;
     }
     if (highlightColor === 'yellow.500') {
-      return `${themeColors['yellow']}aa`
+      return `${themeColors['yellow']}aa`;
     }
     if (highlightColor === 'orange.500') {
-      return `${themeColors['orange']}aa`
+      return `${themeColors['orange']}aa`;
     }
     if (highlightColor === 'red.500') {
-      return `${themeColors['red']}aa`
+      return `${themeColors['red']}aa`;
     }
-  }
-  const missingColor = d3int.interpolate(themeColors['base1'], themeColors['base2'])(0.2)
-  const borderColor = getBorderColor()
+  };
+  const missingColor = d3int.interpolate(
+    themeColors['base1'],
+    themeColors['base2']
+  )(0.2);
+  const borderColor = getBorderColor();
   const theme = useMemo(() => {
     return {
       colors: {
@@ -150,7 +158,11 @@ function SubApp(props: any) {
             },
             ghost: {
               color: highlightColor,
-              _hover: { bg: `inherit`, border: '1px solid', borderColor: highlightColor },
+              _hover: {
+                bg: `inherit`,
+                border: '1px solid',
+                borderColor: highlightColor,
+              },
               _active: { color: `inherit`, bg: highlightColor },
             },
             subtle: {
@@ -175,7 +187,7 @@ function SubApp(props: any) {
           },
         },
         Slider: {
-          baseStyle: (props: any) => ({
+          baseStyle: () => ({
             thumb: {
               backgroundColor: highlightColor,
             },
@@ -191,13 +203,13 @@ function SubApp(props: any) {
           }),
         },
       },
-    }
-  }, [highlightColor, JSON.stringify(emacsTheme)])
+    };
+  }, [highlightColor, JSON.stringify(emacsTheme)]);
 
   const extendedTheme = extendTheme(
     theme,
-    withDefaultColorScheme({ colorScheme: highlightColor.split('.')[0] }),
-  )
-  return <ChakraProvider theme={extendedTheme}>{children}</ChakraProvider>
+    withDefaultColorScheme({ colorScheme: highlightColor.split('.')[0] })
+  );
+  return <ChakraProvider theme={extendedTheme}>{children}</ChakraProvider>;
 }
-export default MyApp
+export default MyApp;

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import {
   Box,
   Button,
@@ -7,17 +7,15 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Portal,
   Text,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
-import { themes } from '../../themes'
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import { ThemeContext } from '../../../util/themecontext'
+import { themes } from '../../themes';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { ThemeContext } from '../../../util/themecontext';
 
 export const ThemeSelect = () => {
-  type Theme = { [key: string]: string }
-  const { emacsTheme, setEmacsTheme, highlightColor } = useContext(ThemeContext)
+  const { emacsTheme, setEmacsTheme } = useContext(ThemeContext);
   return (
     <Flex alignItems="center" justifyContent="space-between" pl={7} pr={2}>
       <Text>Theme</Text>
@@ -29,7 +27,7 @@ export const ThemeSelect = () => {
           color="black"
           rightIcon={<ChevronDownIcon />}
         >
-          {emacsTheme[0]}
+          <>{emacsTheme[0]}</>
         </MenuButton>
         <MenuList minW={10} zIndex="popover" bgColor="gray.200">
           <MenuItem
@@ -40,7 +38,7 @@ export const ThemeSelect = () => {
           >
             <Box height={6} width={6}></Box>
           </MenuItem>
-          {Object.keys(themes).map((theme: string, i: number) => (
+          {Object.keys(themes).map((theme: string) => (
             <MenuItem
               key={theme}
               onClick={() => setEmacsTheme([theme, themes[theme]])}
@@ -49,9 +47,14 @@ export const ThemeSelect = () => {
               display="flex"
             >
               <Text>{theme}</Text>
-              <Flex height={6} width={20} flexDirection="column" flexWrap="wrap">
+              <Flex
+                height={6}
+                width={20}
+                flexDirection="column"
+                flexWrap="wrap"
+              >
                 {Object.values(themes[theme as string]).map((color: string) => {
-                  return <Box key={color} bgColor={color} flex="1 1 8px"></Box>
+                  return <Box key={color} bgColor={color} flex="1 1 8px"></Box>;
                 })}
               </Flex>
             </MenuItem>
@@ -59,5 +62,5 @@ export const ThemeSelect = () => {
         </MenuList>
       </Menu>
     </Flex>
-  )
-}
+  );
+};

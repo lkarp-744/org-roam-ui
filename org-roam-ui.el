@@ -42,7 +42,7 @@
   "UI in Org-roam."
   :group 'org-roam
   :prefix "org-roam-ui-"
-  :link '(url-link :tag "Github" "https://github.com/org-roam/org-roam-ui"))
+  :link '(url-link :tag "Github" "https://github.com/leander-karp/org-roam-ui"))
 
 (defvar org-roam-ui-root-dir
   (concat (file-name-directory

@@ -1,4 +1,4 @@
-import { ArrowRightIcon, ChevronDownIcon, RepeatIcon } from '@chakra-ui/icons'
+import { ArrowRightIcon, ChevronDownIcon, RepeatIcon } from '@chakra-ui/icons';
 import {
   Text,
   Box,
@@ -15,20 +15,21 @@ import {
   MenuItemOption,
   Button,
   MenuItem,
-} from '@chakra-ui/react'
-import React from 'react'
-import { ColorMenu } from './ColorMenu'
-import { colorList, initialVisuals } from '../../config'
+} from '@chakra-ui/react';
+import React from 'react';
+import { ColorMenu } from './ColorMenu';
+import { colorList, initialVisuals } from '../../config';
 
 export interface ColorsPanelProps {
-  visuals: typeof initialVisuals
-  setVisualsCallback: any
-  highlightColor: string
-  setHighlightColor: any
+  visuals: typeof initialVisuals;
+  setVisualsCallback: any;
+  highlightColor: string;
+  setHighlightColor: any;
 }
 
 export const ColorsPanel = (props: ColorsPanelProps) => {
-  const { visuals, setVisualsCallback, highlightColor, setHighlightColor } = props
+  const { visuals, setVisualsCallback, highlightColor, setHighlightColor } =
+    props;
 
   return (
     <VStack
@@ -48,7 +49,7 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
               icon={<RepeatIcon />}
               variant="ghost"
               onClick={() => {
-                const arr = visuals.nodeColorScheme ?? []
+                const arr = visuals.nodeColorScheme ?? [];
                 setVisualsCallback({
                   ...visuals,
                   //shuffle that guy
@@ -56,8 +57,9 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
                   nodeColorScheme: arr
                     .map((x: any) => [Math.random(), x])
                     .sort(([a], [b]) => a - b)
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     .map(([_, x]) => x),
-                })
+                });
               }}
             />
           </Tooltip>
@@ -68,11 +70,11 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
               size="sm"
               variant="ghost"
               onClick={() => {
-                const arr = visuals.nodeColorScheme ?? []
+                const arr = visuals.nodeColorScheme ?? [];
                 setVisualsCallback({
                   ...visuals,
                   nodeColorScheme: [...arr.slice(1, arr.length), arr[0]],
-                })
+                });
               }}
             />
           </Tooltip>
@@ -86,7 +88,12 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
             >
               <Flex height={6} width={6} flexDirection="column" flexWrap="wrap">
                 {visuals.nodeColorScheme.map((color) => (
-                  <Box key={color} bgColor={color} flex="1 1 8px" borderRadius="2xl"></Box>
+                  <Box
+                    key={color}
+                    bgColor={color}
+                    flex="1 1 8px"
+                    borderRadius="2xl"
+                  ></Box>
                 ))}
               </Flex>
             </MenuButton>
@@ -99,22 +106,34 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
                   defaultValue={visuals.nodeColorScheme}
                   onChange={(colors) => {
                     if (!colors.length) {
-                      return
+                      return;
                     }
-                    setVisualsCallback({ ...visuals, nodeColorScheme: colors })
+                    setVisualsCallback({ ...visuals, nodeColorScheme: colors });
                   }}
                 >
                   {colorList.map((color) => (
                     <MenuItemOption
                       key={color}
-                      isChecked={visuals.nodeColorScheme.some((c) => c === color)}
+                      isChecked={visuals.nodeColorScheme.some(
+                        (c) => c === color
+                      )}
                       value={color}
                       isDisabled={
-                        visuals.nodeColorScheme.length === 1 && visuals.nodeColorScheme[0] === color
+                        visuals.nodeColorScheme.length === 1 &&
+                        visuals.nodeColorScheme[0] === color
                       }
                     >
-                      <Box justifyContent="space-between" alignItems="center" display="flex">
-                        <Box bgColor={color} borderRadius="sm" height={6} width={6}></Box>
+                      <Box
+                        justifyContent="space-between"
+                        alignItems="center"
+                        display="flex"
+                      >
+                        <Box
+                          bgColor={color}
+                          borderRadius="sm"
+                          height={6}
+                          width={6}
+                        ></Box>
                       </Box>
                     </MenuItemOption>
                   ))}
@@ -126,7 +145,12 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
         <Flex alignItems="center" justifyContent="space-between">
           <Text>Links</Text>
           <Menu isLazy placement="right">
-            <MenuButton as={Button} colorScheme="" color="black" rightIcon={<ChevronDownIcon />}>
+            <MenuButton
+              as={Button}
+              colorScheme=""
+              color="black"
+              rightIcon={<ChevronDownIcon />}
+            >
               <Box>
                 {visuals.linkColorScheme ? (
                   <Box
@@ -136,9 +160,19 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
                     width={6}
                   ></Box>
                 ) : (
-                  <Flex height={6} width={6} flexDirection="column" flexWrap="wrap">
+                  <Flex
+                    height={6}
+                    width={6}
+                    flexDirection="column"
+                    flexWrap="wrap"
+                  >
                     {visuals.nodeColorScheme.map((color) => (
-                      <Box key={color} bgColor={color} flex="1 1 8px" borderRadius="2xl"></Box>
+                      <Box
+                        key={color}
+                        bgColor={color}
+                        flex="1 1 8px"
+                        borderRadius="2xl"
+                      ></Box>
                     ))}
                   </Flex>
                 )}
@@ -148,14 +182,26 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
               {' '}
               <MenuList minW={10} zIndex="popover" bgColor="gray.200">
                 <MenuItem
-                  onClick={() => setVisualsCallback({ ...visuals, linkColorScheme: '' })}
+                  onClick={() =>
+                    setVisualsCallback({ ...visuals, linkColorScheme: '' })
+                  }
                   justifyContent="space-between"
                   alignItems="center"
                   display="flex"
                 >
-                  <Flex height={6} width={6} flexDirection="column" flexWrap="wrap">
+                  <Flex
+                    height={6}
+                    width={6}
+                    flexDirection="column"
+                    flexWrap="wrap"
+                  >
                     {visuals.nodeColorScheme.map((color) => (
-                      <Box key={color} bgColor={color} flex="1 1 8px" borderRadius="2xl"></Box>
+                      <Box
+                        key={color}
+                        bgColor={color}
+                        flex="1 1 8px"
+                        borderRadius="2xl"
+                      ></Box>
                     ))}
                   </Flex>
                 </MenuItem>
@@ -172,7 +218,12 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
                     alignItems="center"
                     display="flex"
                   >
-                    <Box bgColor={color} borderRadius="sm" height={6} width={6}></Box>
+                    <Box
+                      bgColor={color}
+                      borderRadius="sm"
+                      height={6}
+                      width={6}
+                    ></Box>
                   </MenuItem>
                 ))}
               </MenuList>
@@ -182,8 +233,20 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
         <Flex alignItems="center" justifyContent="space-between">
           <Text>Accent</Text>
           <Menu isLazy placement="right">
-            <MenuButton as={Button} colorScheme="" color="black" rightIcon={<ChevronDownIcon />}>
-              {<Box bgColor={highlightColor} borderRadius="sm" height={6} width={6}></Box>}
+            <MenuButton
+              as={Button}
+              colorScheme=""
+              color="black"
+              rightIcon={<ChevronDownIcon />}
+            >
+              {
+                <Box
+                  bgColor={highlightColor}
+                  borderRadius="sm"
+                  height={6}
+                  width={6}
+                ></Box>
+              }
             </MenuButton>
             <Portal>
               {' '}
@@ -196,7 +259,12 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
                     alignItems="center"
                     display="flex"
                   >
-                    <Box bgColor={color} borderRadius="sm" height={6} width={6}></Box>
+                    <Box
+                      bgColor={color}
+                      borderRadius="sm"
+                      height={6}
+                      width={6}
+                    ></Box>
                   </MenuItem>
                 ))}
               </MenuList>
@@ -233,5 +301,5 @@ export const ColorsPanel = (props: ColorsPanelProps) => {
         />
       </Box>
     </VStack>
-  )
-}
+  );
+};

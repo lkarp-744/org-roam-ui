@@ -1,17 +1,17 @@
-import { Text, Box, Collapse, Switch } from '@chakra-ui/react'
-import React from 'react'
-import { InfoTooltip } from './InfoTooltip'
+import { Text, Box, Collapse, Switch } from '@chakra-ui/react';
+import React from 'react';
+import { InfoTooltip } from './InfoTooltip';
 
 export interface EnableSectionProps {
-  label: string
-  value: boolean | number
-  onChange: () => void
-  infoText?: string
-  children: React.ReactNode
+  label: string;
+  value: boolean | number;
+  onChange: () => void;
+  infoText?: string;
+  children: React.ReactNode;
 }
 
 export const EnableSection = (props: EnableSectionProps) => {
-  const { value, onChange, label, infoText, children } = props
+  const { value, onChange, label, infoText, children } = props;
   return (
     <Box paddingTop={2} key={label}>
       <Box display="flex" justifyContent="space-between" paddingBottom={2}>
@@ -27,5 +27,5 @@ export const EnableSection = (props: EnableSectionProps) => {
         </Box>
       </Collapse>
     </Box>
-  )
-}
+  );
+};

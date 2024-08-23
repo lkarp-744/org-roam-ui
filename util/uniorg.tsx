@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { LinksByNodeId, NodeByCite, NodeById } from '../pages/index'
-import { ProcessedOrg } from './processOrg'
+import React, { useEffect, useState } from 'react';
+import { LinksByNodeId, NodeByCite, NodeById } from '../pages/index';
+import { ProcessedOrg } from './processOrg';
 
 export interface UniOrgProps {
-  nodeById: NodeById
-  previewNode: any
-  setPreviewNode: any
-  nodeByCite: NodeByCite
-  setSidebarHighlightedNode: any
-  openContextMenu: any
-  outline: boolean
-  collapse: boolean
-  linksByNodeId: LinksByNodeId
-  macros?: { [key: string]: string }
-  attachDir: string
-  useInheritance: boolean
+  nodeById: NodeById;
+  previewNode: any;
+  setPreviewNode: any;
+  nodeByCite: NodeByCite;
+  setSidebarHighlightedNode: any;
+  openContextMenu: any;
+  outline: boolean;
+  collapse: boolean;
+  linksByNodeId: LinksByNodeId;
+  macros?: { [key: string]: string };
+  attachDir: string;
+  useInheritance: boolean;
 }
 
 export const UniOrg = (props: UniOrgProps) => {
@@ -31,31 +31,31 @@ export const UniOrg = (props: UniOrgProps) => {
     macros,
     attachDir,
     useInheritance,
-  } = props
+  } = props;
 
-  const [previewText, setPreviewText] = useState('')
+  const [previewText, setPreviewText] = useState('');
 
-  const id = encodeURIComponent(encodeURIComponent(previewNode.id))
+  const id = encodeURIComponent(encodeURIComponent(previewNode.id));
   useEffect(() => {
     fetch(`http://localhost:35901/node/${id}`)
       .then((res) => {
-        return res.text()
+        return res.text();
       })
       .then((res) => {
         if (res === '') {
-          return '(empty node)'
+          return '(empty node)';
         }
         if (res !== 'error') {
-          console.log(res)
-          setPreviewText(res)
+          console.log(res);
+          setPreviewText(res);
         }
       })
       .catch((e) => {
-        setPreviewText('(could not find node)')
-        console.log(e)
-        return 'Could not fetch the text for some reason, sorry!\n\n This can happen because you have an id with forward slashes (/) in it.'
-      })
-  }, [previewNode.id])
+        setPreviewText('(could not find node)');
+        console.log(e);
+        return 'Could not fetch the text for some reason, sorry!\n\n This can happen because you have an id with forward slashes (/) in it.';
+      });
+  }, [previewNode.id]);
 
   return (
     <>
@@ -79,5 +79,5 @@ export const UniOrg = (props: UniOrgProps) => {
         />
       )}
     </>
-  )
-}
+  );
+};

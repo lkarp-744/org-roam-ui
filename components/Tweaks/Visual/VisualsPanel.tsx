@@ -7,32 +7,25 @@ import {
   VStack,
   AccordionIcon,
   AccordionPanel,
-  MenuButton,
-  Menu,
-  Button,
-  Box,
-  Portal,
-  MenuList,
-  MenuItem,
-} from '@chakra-ui/react'
-import React, { useCallback } from 'react'
-import { HighlightingPanel } from './HighlightingPanel'
-import { ColorsPanel } from './ColorsPanel'
-import { initialColoring, initialVisuals } from '../../config'
-import { NodesNLinksPanel } from './NodesNLinksPanel'
-import { LabelsPanel } from './LabelsPanel'
-import { ThemeSelect } from './ThemeSelect'
-import { CitationsPanel } from '../NodesNLinks/CitationsPanel'
-import { GraphColorSelect } from './GraphColorSelect'
+} from '@chakra-ui/react';
+import React, { useCallback } from 'react';
+import { HighlightingPanel } from './HighlightingPanel';
+import { ColorsPanel } from './ColorsPanel';
+import { initialColoring, initialVisuals } from '../../config';
+import { NodesNLinksPanel } from './NodesNLinksPanel';
+import { LabelsPanel } from './LabelsPanel';
+import { ThemeSelect } from './ThemeSelect';
+import { CitationsPanel } from '../NodesNLinks/CitationsPanel';
+import { GraphColorSelect } from './GraphColorSelect';
 
 export interface VisualsPanelProps {
-  visuals: typeof initialVisuals
-  setVisuals: any
-  highlightColor: string
-  setHighlightColor: any
-  threeDim: boolean
-  coloring: typeof initialColoring
-  setColoring: any
+  visuals: typeof initialVisuals;
+  setVisuals: any;
+  highlightColor: string;
+  setHighlightColor: any;
+  threeDim: boolean;
+  coloring: typeof initialColoring;
+  setColoring: any;
 }
 
 export const VisualsPanel = (props: VisualsPanelProps) => {
@@ -44,8 +37,8 @@ export const VisualsPanel = (props: VisualsPanelProps) => {
     highlightColor,
     setHighlightColor,
     threeDim,
-  } = props
-  const setVisualsCallback = useCallback((val) => setVisuals(val), [])
+  } = props;
+  const setVisualsCallback = useCallback((val: unknown) => setVisuals(val), []);
   return (
     <VStack justifyContent="flex-start" align="stretch">
       <ThemeSelect />
@@ -101,7 +94,10 @@ export const VisualsPanel = (props: VisualsPanelProps) => {
             </Flex>
           </AccordionButton>
           <AccordionPanel>
-            <HighlightingPanel visuals={visuals} setVisuals={setVisualsCallback} />
+            <HighlightingPanel
+              visuals={visuals}
+              setVisuals={setVisualsCallback}
+            />
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem>
@@ -117,5 +113,5 @@ export const VisualsPanel = (props: VisualsPanelProps) => {
         </AccordionItem>
       </Accordion>
     </VStack>
-  )
-}
+  );
+};

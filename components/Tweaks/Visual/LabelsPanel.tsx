@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -12,18 +12,18 @@ import {
   StackDivider,
   VStack,
   Text,
-} from '@chakra-ui/react'
-import React from 'react'
-import { ColorMenu } from './ColorMenu'
-import { colorList, initialVisuals } from '../../config'
-import { SliderWithInfo } from '../SliderWithInfo'
+} from '@chakra-ui/react';
+import React from 'react';
+import { ColorMenu } from './ColorMenu';
+import { colorList, initialVisuals } from '../../config';
+import { SliderWithInfo } from '../SliderWithInfo';
 
 export interface LabelsPanelProps {
-  visuals: typeof initialVisuals
-  setVisuals: any
+  visuals: typeof initialVisuals;
+  setVisuals: any;
 }
 export const LabelsPanel = (props: LabelsPanelProps) => {
-  const { visuals, setVisuals } = props
+  const { visuals, setVisuals } = props;
   return (
     <VStack
       spacing={2}
@@ -35,17 +35,30 @@ export const LabelsPanel = (props: LabelsPanelProps) => {
       <Flex alignItems="center" justifyContent="space-between">
         <Text>Show labels</Text>
         <Menu isLazy placement="right">
-          <MenuButton as={Button} colorScheme="" color="black" rightIcon={<ChevronDownIcon />}>
-            {!visuals.labels ? 'Never' : visuals.labels < 2 ? 'On Highlight' : 'Always'}
+          <MenuButton
+            as={Button}
+            colorScheme=""
+            color="black"
+            rightIcon={<ChevronDownIcon />}
+          >
+            {!visuals.labels
+              ? 'Never'
+              : visuals.labels < 2
+                ? 'On Highlight'
+                : 'Always'}
           </MenuButton>
           <Portal>
             {' '}
             <MenuList zIndex="popover" bgColor="gray.200">
-              <MenuItem onClick={() => setVisuals({ ...visuals, labels: 0 })}>Never</MenuItem>
+              <MenuItem onClick={() => setVisuals({ ...visuals, labels: 0 })}>
+                Never
+              </MenuItem>
               <MenuItem onClick={() => setVisuals({ ...visuals, labels: 1 })}>
                 On Highlight
               </MenuItem>
-              <MenuItem onClick={() => setVisuals({ ...visuals, labels: 2 })}>Always</MenuItem>
+              <MenuItem onClick={() => setVisuals({ ...visuals, labels: 2 })}>
+                Always
+              </MenuItem>
               <MenuItem onClick={() => setVisuals({ ...visuals, labels: 3 })}>
                 Always (even in 3D)
               </MenuItem>
@@ -58,7 +71,9 @@ export const LabelsPanel = (props: LabelsPanelProps) => {
           <SliderWithInfo
             label="Label Appearance Scale"
             value={visuals.labelScale * 2}
-            onChange={(value) => setVisuals({ ...visuals, labelScale: value / 2 })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, labelScale: value / 2 })
+            }
           />
         </Box>
         <Box paddingTop={2}>
@@ -115,8 +130,8 @@ export const LabelsPanel = (props: LabelsPanelProps) => {
               label="Background opacity"
               value={visuals.labelBackgroundOpacity}
               onChange={(value) => {
-                console.log(visuals.labelBackgroundOpacity)
-                setVisuals({ ...visuals, labelBackgroundOpacity: value })
+                console.log(visuals.labelBackgroundOpacity);
+                setVisuals({ ...visuals, labelBackgroundOpacity: value });
               }}
               min={0}
               max={1}
@@ -158,5 +173,5 @@ export const LabelsPanel = (props: LabelsPanelProps) => {
         onChange={(value) => setVisuals({ ...visuals, labelLineSpace: value })}
       />
     </VStack>
-  )
-}
+  );
+};

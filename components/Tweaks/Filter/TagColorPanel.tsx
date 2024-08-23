@@ -1,4 +1,4 @@
-import { DeleteIcon } from '@chakra-ui/icons'
+import { DeleteIcon } from '@chakra-ui/icons';
 import {
   Text,
   Box,
@@ -12,32 +12,34 @@ import {
   StackDivider,
   VStack,
   Button,
-} from '@chakra-ui/react'
-import { CUIAutoComplete } from 'chakra-ui-autocomplete'
-import React, { useState } from 'react'
-import { TagColors } from '../../config'
+} from '@chakra-ui/react';
+import { CUIAutoComplete } from 'chakra-ui-autocomplete';
+import React, { useState } from 'react';
+import { TagColors } from '../../config';
 
 export interface TagColorPanelProps {
-  tags: string[]
-  highlightColor: string
-  colorList: string[]
-  tagColors: TagColors
-  setTagColors: any
+  tags: string[];
+  highlightColor: string;
+  colorList: string[];
+  tagColors: TagColors;
+  setTagColors: any;
 }
 export const TagColorPanel = (props: TagColorPanelProps) => {
-  const { colorList, tagColors, setTagColors, highlightColor, tags } = props
+  const { colorList, tagColors, setTagColors, highlightColor, tags } = props;
   const tagArray = tags.map((tag) => {
-    return { value: tag, label: tag }
-  })
+    return { value: tag, label: tag };
+  });
 
   const [selectedItems, setSelectedItems] = useState<typeof tagArray>(
     Object.keys(tagColors).map((tag) => {
-      return { value: tag, label: tag }
-    }),
-  )
+      return { value: tag, label: tag };
+    })
+  );
 
   return (
     <Box>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-expect-error */}
       <CUIAutoComplete
         items={tagArray}
         labelStyleProps={{ fontWeight: 300, fontSize: 14 }}
@@ -47,14 +49,14 @@ export const TagColorPanel = (props: TagColorPanelProps) => {
         selectedItems={selectedItems}
         onSelectedItemsChange={(changes) => {
           if (changes.selectedItems) {
-            setSelectedItems(Array.from(new Set(changes.selectedItems)))
+            setSelectedItems(Array.from(new Set(changes.selectedItems)));
             setTagColors(
               Object.fromEntries(
                 Array.from(new Set(changes.selectedItems)).map((item) => {
-                  return [item.label, tagColors[item.label] ?? 'gray.600']
-                }),
-              ),
-            )
+                  return [item.label, tagColors[item.label] ?? 'gray.600'];
+                })
+              )
+            );
           }
         }}
         listItemStyleProps={{ overflow: 'hidden' }}
@@ -86,13 +88,26 @@ export const TagColorPanel = (props: TagColorPanelProps) => {
       >
         {Object.keys(tagColors).map((tag) => {
           return (
-            <Flex key={tag} alignItems="center" justifyContent="space-between" width="100%" pl={2}>
+            <Flex
+              key={tag}
+              alignItems="center"
+              justifyContent="space-between"
+              width="100%"
+              pl={2}
+            >
               <Box width="100%">
                 <Text>{tag}</Text>
               </Box>
               <Menu isLazy placement="right">
                 <MenuButton as={Button} colorScheme="" color="black">
-                  {<Box bgColor={tagColors[tag]} borderRadius="sm" height={6} width={6}></Box>}
+                  {
+                    <Box
+                      bgColor={tagColors[tag]}
+                      borderRadius="sm"
+                      height={6}
+                      width={6}
+                    ></Box>
+                  }
                 </MenuButton>
                 <Portal>
                   <MenuList minW={10} zIndex="popover" bgColor="gray.200">
@@ -109,7 +124,12 @@ export const TagColorPanel = (props: TagColorPanelProps) => {
                         alignItems="center"
                         display="flex"
                       >
-                        <Box bgColor={color} borderRadius="sm" height={6} width={6}></Box>
+                        <Box
+                          bgColor={color}
+                          borderRadius="sm"
+                          height={6}
+                          width={6}
+                        ></Box>
                       </MenuItem>
                     ))}
                   </MenuList>
@@ -123,17 +143,22 @@ export const TagColorPanel = (props: TagColorPanelProps) => {
                   setTagColors(
                     Object.fromEntries(
                       Array.from(new Set(selectedItems)).map((item) => {
-                        return [item.label, tagColors[item.label] ?? 'gray.600']
-                      }),
-                    ),
-                  )
-                  setSelectedItems(selectedItems.filter((item) => item.value !== tag))
+                        return [
+                          item.label,
+                          tagColors[item.label] ?? 'gray.600',
+                        ];
+                      })
+                    )
+                  );
+                  setSelectedItems(
+                    selectedItems.filter((item) => item.value !== tag)
+                  );
                 }}
               />
             </Flex>
-          )
+          );
         })}
       </VStack>
     </Box>
-  )
-}
+  );
+};

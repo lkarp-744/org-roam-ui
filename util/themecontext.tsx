@@ -1,14 +1,13 @@
-import { createContext } from 'react'
+import { createContext } from 'react';
 
-import { themes } from '../components/themes'
-const initialTheme = ['vibrant', themes['one-vibrant']]
-type Theme = [name: string, themeObject: { [color: string]: string }]
+import { themes } from '../components/themes';
+const initialTheme = ['vibrant', themes['one-vibrant']];
 
 export interface ThemeContextProps {
-  emacsTheme: typeof initialTheme
-  setEmacsTheme: any
-  highlightColor: string
-  setHighlightColor: any
+  emacsTheme: typeof initialTheme;
+  setEmacsTheme: any;
+  highlightColor: string;
+  setHighlightColor: any;
 }
 
 const ThemeContext = createContext<ThemeContextProps>({
@@ -16,5 +15,5 @@ const ThemeContext = createContext<ThemeContextProps>({
   setEmacsTheme: null,
   highlightColor: 'purple',
   setHighlightColor: null,
-})
-export { ThemeContext }
+});
+export { ThemeContext };

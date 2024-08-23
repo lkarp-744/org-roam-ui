@@ -1,4 +1,4 @@
-import { CloseIcon, RepeatClockIcon, SettingsIcon } from '@chakra-ui/icons'
+import { CloseIcon, RepeatClockIcon, SettingsIcon } from '@chakra-ui/icons';
 import {
   Accordion,
   AccordionButton,
@@ -10,10 +10,10 @@ import {
   IconButton,
   Tooltip,
   Heading,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
-import React, { useContext } from 'react'
-import Scrollbars from 'react-custom-scrollbars-2'
+import React, { useContext } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
 import {
   initialPhysics,
   initialFilter,
@@ -24,63 +24,61 @@ import {
   TagColors,
   colorList,
   initialColoring,
-} from '../config'
+} from '../config';
 
-import FilterPanel from './Filter/FilterPanel'
+import FilterPanel from './Filter/FilterPanel';
 
-import { ThemeContext } from '../../util/themecontext'
-import { usePersistantState } from '../../util/persistant-state'
-import { PhysicsPanel } from './Physics/PhysicsPanel'
-import { BehaviorPanel } from './Behavior/BehaviorPanel'
-import { VisualsPanel } from './Visual/VisualsPanel'
+import { ThemeContext } from '../../util/themecontext';
+import { usePersistantState } from '../../util/persistant-state';
+import { PhysicsPanel } from './Physics/PhysicsPanel';
+import { BehaviorPanel } from './Behavior/BehaviorPanel';
+import { VisualsPanel } from './Visual/VisualsPanel';
 
 export interface TweakProps {
-  physics: typeof initialPhysics
-  setPhysics: any
-  threeDim: boolean
-  setThreeDim: (newValue: boolean) => void
-  filter: typeof initialFilter
-  setFilter: any
-  visuals: typeof initialVisuals
-  setVisuals: any
-  mouse: typeof initialMouse
-  setMouse: any
-  behavior: typeof initialBehavior
-  setBehavior: any
-  tags: string[]
-  tagColors: TagColors
-  setTagColors: any
-  coloring: typeof initialColoring
-  setColoring: any
-  local: typeof initialLocal
-  setLocal: any
+  physics: typeof initialPhysics;
+  setPhysics: any;
+  threeDim: boolean;
+  setThreeDim: (newValue: boolean) => void;
+  filter: typeof initialFilter;
+  setFilter: any;
+  visuals: typeof initialVisuals;
+  setVisuals: any;
+  mouse: typeof initialMouse;
+  setMouse: any;
+  behavior: typeof initialBehavior;
+  setBehavior: any;
+  tags: string[];
+  tagColors: TagColors;
+  setTagColors: any;
+  coloring: typeof initialColoring;
+  setColoring: any;
+  local: typeof initialLocal;
+  setLocal: any;
 }
 
-export const Tweaks = (props: TweakProps) => {
-  const {
-    physics,
-    setPhysics,
-    threeDim,
-    setThreeDim,
-    filter,
-    setFilter,
-    visuals,
-    setVisuals,
-    mouse,
-    setMouse,
-    behavior,
-    setBehavior,
-    tags,
-    tagColors,
-    setTagColors,
-    coloring,
-    setColoring,
-    local,
-    setLocal,
-  } = props
-
-  const [showTweaks, setShowTweaks] = usePersistantState('showTweaks', false)
-  const { highlightColor, setHighlightColor } = useContext(ThemeContext)
+export const Tweaks = ({
+  physics,
+  setPhysics,
+  threeDim,
+  setThreeDim,
+  filter,
+  setFilter,
+  visuals,
+  setVisuals,
+  mouse,
+  setMouse,
+  behavior,
+  setBehavior,
+  tags,
+  tagColors,
+  setTagColors,
+  coloring,
+  setColoring,
+  local,
+  setLocal,
+}: TweakProps) => {
+  const [showTweaks, setShowTweaks] = usePersistantState('showTweaks', false);
+  const { highlightColor, setHighlightColor } = useContext(ThemeContext);
 
   return !showTweaks ? (
     <Box
@@ -119,7 +117,11 @@ export const Tweaks = (props: TweakProps) => {
         paddingTop={1}
       >
         <Tooltip label={'Switch to ' + threeDim ? '2D' : '3D' + ' view'}>
-          <Button onClick={() => setThreeDim(!threeDim)} variant="subtle" zIndex="overlay">
+          <Button
+            onClick={() => setThreeDim(!threeDim)}
+            variant="subtle"
+            zIndex="overlay"
+          >
             {threeDim ? '3D' : '2D'}
           </Button>
         </Tooltip>
@@ -129,14 +131,14 @@ export const Tweaks = (props: TweakProps) => {
               aria-label="Reset Defaults"
               icon={<RepeatClockIcon />}
               onClick={() => {
-                setVisuals(initialVisuals)
-                setFilter(initialFilter)
-                setMouse(initialMouse)
-                setPhysics(initialPhysics)
-                setBehavior(initialBehavior)
-                setColoring(initialColoring)
-                setHighlightColor('purple.500')
-                setLocal(initialLocal)
+                setVisuals(initialVisuals);
+                setFilter(initialFilter);
+                setMouse(initialMouse);
+                setPhysics(initialPhysics);
+                setBehavior(initialBehavior);
+                setColoring(initialColoring);
+                setHighlightColor('purple.500');
+                setLocal(initialLocal);
               }}
               variant="subtle"
               size="sm"
@@ -232,5 +234,5 @@ export const Tweaks = (props: TweakProps) => {
         </Accordion>
       </Scrollbars>
     </Box>
-  )
-}
+  );
+};

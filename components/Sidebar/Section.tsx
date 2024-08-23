@@ -1,29 +1,29 @@
-import { Box, Flex, IconButton } from '@chakra-ui/react'
-import React, { ReactChild, useContext, useEffect, useState } from 'react'
-import { VscCircleFilled, VscCircleOutline } from 'react-icons/vsc'
-import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
-import { NoteContext } from '../../util/NoteContext'
+import { Box, Flex, IconButton } from '@chakra-ui/react';
+import React, { ReactChild, useContext, useEffect, useState } from 'react';
+import { VscCircleFilled, VscCircle } from 'react-icons/vsc';
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import { NoteContext } from '../../util/NoteContext';
 
 export interface SectionProps {
-  children: any
-  className: string
+  children: any;
+  className: string;
 }
 
 export const Section = (props: SectionProps) => {
   const {
     children,
     className, // outline
-  } = props
-  const [open, setOpen] = useState(true)
-  const { collapse } = useContext(NoteContext)
+  } = props;
+  const [open, setOpen] = useState(true);
+  const { collapse } = useContext(NoteContext);
   useEffect(() => {
-    setOpen(!collapse)
-  }, [collapse])
+    setOpen(!collapse);
+  }, [collapse]);
 
   if (className === 'h0Wrapper headingWrapper') {
-    return <Box className="preHeadingContent"> {children}</Box>
+    return <Box className="preHeadingContent"> {children}</Box>;
   }
-  const kids = children as ReactChild[]
+  const kids = children as ReactChild[];
   return (
     <Box className={'sec'}>
       <Box display="block">
@@ -51,7 +51,7 @@ export const Section = (props: SectionProps) => {
                 //mr={1}
                 size="xs"
                 variant="subtle"
-                icon={<VscCircleOutline />}
+                icon={<VscCircle />}
                 onClick={() => setOpen(!open)}
                 height={2}
                 width={2}
@@ -92,5 +92,5 @@ export const Section = (props: SectionProps) => {
       </Box>
       {open && <Box className="sectionContent">{kids.slice(1)}</Box>}
     </Box>
-  )
-}
+  );
+};

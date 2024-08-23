@@ -1,18 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react'
-import Image from 'next/image'
-import path from 'path'
-import { Container } from '@chakra-ui/react'
-//import '../../../public/placeholder.png'
+import React from 'react';
+import Image from 'next/image';
+import path from 'path';
+import { Container } from '@chakra-ui/react';
 
 export interface OrgImageProps {
-  src: string
-  file: string
+  src: string;
+  file: string;
 }
 
-export const OrgImage = (props: OrgImageProps) => {
-  const { src, file } = props
-
+export const OrgImage = ({ src, file }: OrgImageProps) => {
   // const [image, setImage] = useState<any>(null)
 
   /* )
@@ -24,30 +20,38 @@ export const OrgImage = (props: OrgImageProps) => {
 *   })
 }, [fullPath]) */
 
-  const dumbLoader = ({ src, width, quality }: { [key: string]: string | number }) => {
-    return `${src}`
-  }
-  const homeLoader = ({ src, width, quality }: { [key: string]: string | number }) => {
-    return `http://localhost:35901/img/${src}`
-  }
+  const dumbLoader = ({ src }: { [key: string]: string | number }) => {
+    return `${src}`;
+  };
 
   if (src.replaceAll(/(http)?.*/g, '$1')) {
-    console.log(src.replaceAll(/(http)?.*/g, '$1'))
+    console.log(src.replaceAll(/(http)?.*/g, '$1'));
     return (
-      <Image layout="responsive" loader={dumbLoader} src={src} alt="" width="auto" height="auto" />
-    )
+      <Image
+        layout="responsive"
+        loader={dumbLoader}
+        src={src}
+        alt=""
+        style={{ width: 'auto', height: 'auto' }}
+      />
+    );
   }
 
-  const srcName = src.replaceAll(/file:/g, '')
+  const srcName = src.replaceAll(/file:/g, '');
 
-  const dir = path.dirname(file)
+  const dir = path.dirname(file);
   const fullPath =
-    path.isAbsolute(srcName) || srcName.slice(0, 1) === '~' ? srcName : path.join(dir, srcName)
-  const encodedPath = encodeURIComponent(encodeURIComponent(fullPath))
+    path.isAbsolute(srcName) || srcName.slice(0, 1) === '~'
+      ? srcName
+      : path.join(dir, srcName);
+  const encodedPath = encodeURIComponent(encodeURIComponent(fullPath));
 
   return (
     <Container my={4} position="relative">
-      <img alt="Wow, an image." src={`http://localhost:35901/img/${encodedPath}`} />
+      <img
+        alt="Wow, an image."
+        src={`http://localhost:35901/img/${encodedPath}`}
+      />
     </Container>
-  )
-}
+  );
+};

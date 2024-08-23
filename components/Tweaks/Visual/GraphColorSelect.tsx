@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react';
 import {
-  Box,
   Button,
   Flex,
   Menu,
@@ -9,18 +8,17 @@ import {
   MenuList,
   Portal,
   Text,
-} from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import { initialColoring } from '../../config'
+} from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import { initialColoring } from '../../config';
 
 export interface GraphColorSelectProps {
-  coloring: typeof initialColoring
-  setColoring: any
+  coloring: typeof initialColoring;
+  setColoring: any;
 }
 
 export const GraphColorSelect = (props: GraphColorSelectProps) => {
-  type Theme = { [key: string]: string }
-  const { coloring, setColoring } = props
+  const { coloring, setColoring } = props;
   return (
     <Flex alignItems="center" justifyContent="space-between" pl={7} pr={2}>
       <Text>Graph coloring</Text>
@@ -38,7 +36,10 @@ export const GraphColorSelect = (props: GraphColorSelectProps) => {
           <MenuList minW={10} zIndex="popover" bgColor="gray.200">
             <MenuItem
               onClick={() =>
-                setColoring((curr: typeof initialColoring) => ({ ...curr, method: 'degree' }))
+                setColoring((curr: typeof initialColoring) => ({
+                  ...curr,
+                  method: 'degree',
+                }))
               }
               justifyContent="space-between"
               alignItems="center"
@@ -48,7 +49,10 @@ export const GraphColorSelect = (props: GraphColorSelectProps) => {
             </MenuItem>
             <MenuItem
               onClick={() =>
-                setColoring((curr: typeof initialColoring) => ({ ...curr, method: 'community' }))
+                setColoring((curr: typeof initialColoring) => ({
+                  ...curr,
+                  method: 'community',
+                }))
               }
               justifyContent="space-between"
               alignItems="center"
@@ -60,5 +64,5 @@ export const GraphColorSelect = (props: GraphColorSelectProps) => {
         </Portal>
       </Menu>
     </Flex>
-  )
-}
+  );
+};

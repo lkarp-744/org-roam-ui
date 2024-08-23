@@ -1,7 +1,7 @@
-import { initialColoring, initialVisuals } from '../components/config'
-import { LinksByNodeId } from '../pages'
-import { getLinkNodeColor } from './getLinkNodeColor'
-import { getThemeColor } from './getThemeColor'
+import { initialColoring, initialVisuals } from '../components/config';
+import { LinksByNodeId } from '../pages';
+import { getLinkNodeColor } from './getLinkNodeColor';
+import { getThemeColor } from './getThemeColor';
 
 export const getLinkColor = ({
   sourceId,
@@ -15,18 +15,22 @@ export const getLinkColor = ({
   coloring,
   cluster,
 }: {
-  sourceId: string
-  targetId: string
-  needsHighlighting: boolean
-  theme: any
-  visuals: typeof initialVisuals
-  highlightColors: Record<string, any>
-  opacity: number
-  linksByNodeId: LinksByNodeId
-  coloring: typeof initialColoring
-  cluster: any
+  sourceId: string;
+  targetId: string;
+  needsHighlighting: boolean;
+  theme: any;
+  visuals: typeof initialVisuals;
+  highlightColors: Record<string, any>;
+  opacity: number;
+  linksByNodeId: LinksByNodeId;
+  coloring: typeof initialColoring;
+  cluster: any;
 }) => {
-  if (!visuals.linkHighlight && !visuals.linkColorScheme && !needsHighlighting) {
+  if (
+    !visuals.linkHighlight &&
+    !visuals.linkColorScheme &&
+    !needsHighlighting
+  ) {
     const nodeColor = getLinkNodeColor({
       sourceId,
       targetId,
@@ -34,8 +38,8 @@ export const getLinkColor = ({
       visuals,
       coloring,
       cluster,
-    })
-    return getThemeColor(nodeColor, theme)
+    });
+    return getThemeColor(nodeColor, theme);
   }
 
   if (!needsHighlighting && !visuals.linkColorScheme) {
@@ -46,14 +50,16 @@ export const getLinkColor = ({
       visuals,
       coloring,
       cluster,
-    })
-    return highlightColors[nodeColor][visuals.backgroundColor](visuals.highlightFade * opacity)
+    });
+    return highlightColors[nodeColor][visuals.backgroundColor](
+      visuals.highlightFade * opacity
+    );
   }
 
   if (!needsHighlighting) {
     return highlightColors[visuals.linkColorScheme][visuals.backgroundColor](
-      visuals.highlightFade * opacity,
-    )
+      visuals.highlightFade * opacity
+    );
   }
 
   if (!visuals.linkHighlight && !visuals.linkColorScheme) {
@@ -64,19 +70,28 @@ export const getLinkColor = ({
       visuals,
       coloring,
       cluster,
-    })
-    return getThemeColor(nodeColor, theme)
+    });
+    return getThemeColor(nodeColor, theme);
   }
 
   if (!visuals.linkHighlight) {
-    return getThemeColor(visuals.linkColorScheme, theme)
+    return getThemeColor(visuals.linkColorScheme, theme);
   }
 
   if (!visuals.linkColorScheme) {
     return highlightColors[
-      getLinkNodeColor({ sourceId, targetId, linksByNodeId, visuals, coloring, cluster })
-    ][visuals.linkHighlight](opacity)
+      getLinkNodeColor({
+        sourceId,
+        targetId,
+        linksByNodeId,
+        visuals,
+        coloring,
+        cluster,
+      })
+    ][visuals.linkHighlight](opacity);
   }
 
-  return highlightColors[visuals.linkColorScheme][visuals.linkHighlight](opacity)
-}
+  return highlightColors[visuals.linkColorScheme][visuals.linkHighlight](
+    opacity
+  );
+};

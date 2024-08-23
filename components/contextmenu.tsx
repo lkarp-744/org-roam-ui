@@ -1,12 +1,8 @@
-import React, { useRef } from 'react'
+import React from 'react';
 import {
-  Box,
   Menu,
   MenuItem,
   MenuList,
-  MenuGroup,
-  MenuItemOption,
-  MenuOptionGroup,
   Heading,
   MenuDivider,
   Modal,
@@ -18,58 +14,48 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
-  PopoverTrigger,
-  PopoverContent,
-  Popover,
-  Flex,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverArrow,
-  PopoverHeader,
-  PopoverFooter,
-  Portal,
   Text,
   VStack,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 import {
   DeleteIcon,
   EditIcon,
-  CopyIcon,
   AddIcon,
   ViewIcon,
   ExternalLinkIcon,
-  ChevronRightIcon,
   PlusSquareIcon,
   MinusIcon,
-} from '@chakra-ui/icons'
+} from '@chakra-ui/icons';
 
-import { OrgRoamGraphReponse, OrgRoamLink, OrgRoamNode } from '../api'
-import { deleteNodeInEmacs, openNodeInEmacs, createNodeInEmacs } from '../util/webSocketFunctions'
-import { BiNetworkChart } from 'react-icons/bi'
-import { TagMenu } from './TagMenu'
-import { initialFilter, TagColors } from './config'
+import { OrgRoamNode } from '../api';
+import {
+  deleteNodeInEmacs,
+  openNodeInEmacs,
+  createNodeInEmacs,
+} from '../util/webSocketFunctions';
+import { BiNetworkChart } from 'react-icons/bi';
+import { TagMenu } from './TagMenu';
+import { initialFilter, TagColors } from './config';
 
 export default interface ContextMenuProps {
-  background: Boolean
-  target: OrgRoamNode | string | null
-  nodeType?: string
-  coordinates: { [direction: string]: number | undefined }
-  handleLocal: (node: OrgRoamNode, add: string) => void
-  menuClose: () => void
-  scope: { nodeIds: string[] }
-  webSocket: any
-  setPreviewNode: any
-  setTagColors: any
-  tagColors: TagColors
-  setFilter: any
-  filter: typeof initialFilter
+  background: boolean;
+  target: OrgRoamNode | string | null;
+  nodeType?: string;
+  coordinates: { [direction: string]: number | undefined };
+  handleLocal: (node: OrgRoamNode, add: string) => void;
+  menuClose: () => void;
+  scope: { nodeIds: string[] };
+  webSocket: any;
+  setPreviewNode: any;
+  setTagColors: any;
+  tagColors: TagColors;
+  setFilter: any;
+  filter: typeof initialFilter;
 }
 
 export const ContextMenu = (props: ContextMenuProps) => {
   const {
-    background,
     target,
-    nodeType,
     coordinates,
     handleLocal,
     menuClose,
@@ -80,9 +66,8 @@ export const ContextMenu = (props: ContextMenuProps) => {
     tagColors,
     setFilter,
     filter,
-  } = props
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const copyRef = useRef<any>()
+  } = props;
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Menu defaultIsOpen closeOnBlur={false} onClose={() => menuClose()}>
@@ -111,7 +96,10 @@ export const ContextMenu = (props: ContextMenuProps) => {
               )}
               {scope.nodeIds.length !== 0 && (
                 <>
-                  <MenuItem onClick={() => handleLocal(target!, 'add')} icon={<PlusSquareIcon />}>
+                  <MenuItem
+                    onClick={() => handleLocal(target!, 'add')}
+                    icon={<PlusSquareIcon />}
+                  >
                     Expand local graph at node
                   </MenuItem>
                   <MenuItem
@@ -120,7 +108,10 @@ export const ContextMenu = (props: ContextMenuProps) => {
                   >
                     Open local graph for this node
                   </MenuItem>
-                  <MenuItem onClick={() => handleLocal(target!, 'remove')} icon={<MinusIcon />}>
+                  <MenuItem
+                    onClick={() => handleLocal(target!, 'remove')}
+                    icon={<MinusIcon />}
+                  >
                     Exclude node from local graph
                   </MenuItem>
                 </>
@@ -128,12 +119,17 @@ export const ContextMenu = (props: ContextMenuProps) => {
               {!target?.properties?.FILELESS ? (
                 <MenuItem
                   icon={<EditIcon />}
-                  onClick={() => openNodeInEmacs(target as OrgRoamNode, webSocket)}
+                  onClick={() =>
+                    openNodeInEmacs(target as OrgRoamNode, webSocket)
+                  }
                 >
                   Open in Emacs
                 </MenuItem>
               ) : (
-                <MenuItem icon={<AddIcon />} onClick={() => createNodeInEmacs(target, webSocket)}>
+                <MenuItem
+                  icon={<AddIcon />}
+                  onClick={() => createNodeInEmacs(target, webSocket)}
+                >
                   Create node
                 </MenuItem>
               )}
@@ -141,7 +137,10 @@ export const ContextMenu = (props: ContextMenuProps) => {
                 <MenuItem icon={<ExternalLinkIcon />}>Open in Zotero</MenuItem>
               )}
               {scope.nodeIds.length === 0 && (
-                <MenuItem icon={<BiNetworkChart />} onClick={() => handleLocal(target!, 'replace')}>
+                <MenuItem
+                  icon={<BiNetworkChart />}
+                  onClick={() => handleLocal(target!, 'replace')}
+                >
                   Open local graph
                 </MenuItem>
               )}
@@ -178,7 +177,7 @@ export const ContextMenu = (props: ContextMenuProps) => {
               <MenuItem
                 icon={<ViewIcon />}
                 onClick={() => {
-                  setPreviewNode(target)
+                  setPreviewNode(target);
                 }}
               >
                 Preview
@@ -195,7 +194,9 @@ export const ContextMenu = (props: ContextMenuProps) => {
               )}
             </>
           ) : (
-            <TagMenu {...{ target, tagColors, filter, setTagColors, setFilter }} />
+            <TagMenu
+              {...{ target, tagColors, filter, setTagColors, setFilter }}
+            />
           )}
         </MenuList>
       </Menu>
@@ -211,8 +212,9 @@ export const ContextMenu = (props: ContextMenuProps) => {
                 <Text fontWeight="bold">{target?.title}</Text>
                 {target?.level !== 0 && (
                   <Text>
-                    This will only delete the from this heading until but not including the next
-                    node. Your parent file and all other nodes will not be deleted.
+                    This will only delete the from this heading until but not
+                    including the next node. Your parent file and all other
+                    nodes will not be deleted.
                   </Text>
                 )}
                 <Text>Are you sure you want to do continue?</Text>
@@ -222,9 +224,9 @@ export const ContextMenu = (props: ContextMenuProps) => {
               <Button
                 mr={3}
                 onClick={() => {
-                  console.log('closing')
-                  onClose()
-                  menuClose()
+                  console.log('closing');
+                  onClose();
+                  menuClose();
                 }}
               >
                 Cancel
@@ -234,10 +236,10 @@ export const ContextMenu = (props: ContextMenuProps) => {
                 colorScheme="red"
                 ml={3}
                 onClick={() => {
-                  console.log('aaaaa')
-                  deleteNodeInEmacs(target!, webSocket)
-                  onClose()
-                  menuClose()
+                  console.log('aaaaa');
+                  deleteNodeInEmacs(target!, webSocket);
+                  onClose();
+                  menuClose();
                 }}
               >
                 Delete node
@@ -247,8 +249,8 @@ export const ContextMenu = (props: ContextMenuProps) => {
         </Modal>
       )}
     </>
-  )
-}
+  );
+};
 
 /* <Box>
  *     <Popover>
