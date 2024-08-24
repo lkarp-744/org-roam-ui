@@ -1,42 +1,15 @@
-[![ci](https://github.com/org-roam/org-roam-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/org-roam/org-roam-ui/actions/workflows/ci.yml) [![MELPA](https://melpa.org/packages/org-roam-ui-badge.svg)](https://melpa.org/#/org-roam-ui)
-<img width="1440" alt="Screenshot 2021-10-12 at 12 51 39" src="https://user-images.githubusercontent.com/21983833/136942774-3f293f65-dbd4-4479-b530-1fde738c5289.png">
 
 # org-roam-ui: a graphical frontend for your org-roam Zettelkasten
 
-**Table of Contents**
-
-- [Changelog](#changelog)
-- [Installation](#installation)
-  - [Using package.el](#package.el)
-  - [Doom](#doom)
-  - [straight/use-package](#straightuse-package)
-- [Usage](#usage)
-- [Disclaimers ‼](#disclaimers-)
-- [FAQ 🗨](#faq-)
-- [Features ✨](#features-)
-  - [Planned features](#planned-features)
-- [Supporting org-roam-ui](#supporting-org-roam-ui)
-  - [Feedback](#feedback)
-  - [Contribute 💪](#contribute-)
-    - [Hacktoberfest](#hacktoberfest)
-  - [Donate](#donate)
-    - [Sponsors](#sponsors)
+<img width="1440" alt="Screenshot 2021-10-12 at 12 51 39" src="https://user-images.githubusercontent.com/21983833/136942774-3f293f65-dbd4-4479-b530-1fde738c5289.png">
 
 Org-Roam-UI is a frontend for exploring and interacting with your [org-roam](https://github.com/org-roam/org-roam) notes.
 
-Org-Roam-UI is meant a successor of [org-roam-server](https://github.com/org-roam/org-roam-server) that extends functionality of org-roam with a Web app that runs side-by-side with Emacs.
-
-## Changelog
-
-For major new features/bugfixes we will update [changelog](https://github.com/org-roam/org-roam-ui/discussions/30).
-
-## Installation
-
-`org-roam-ui` is on MELPA!
+## Installation 
 
 org-roam-ui requires `org-roam`, `websocket`, `simple-httpd`, `f` and Emacs >= 27 for fast JSON parsing.
 
-### package.el
+### package.el 
 
 ```
 M-x package-install org-roam-ui
@@ -204,14 +177,6 @@ By default, org-roam-ui will try to open itself in your default browser. To disa
 (setq org-roam-ui-open-on-start nil)
 ```
 
-## Disclaimers ‼
-
-- We only support [org-roam v2](https://blog.jethro.dev/posts/org_roam_v2/); v1 will never be supported.
-- As the name suggests, Org-Roam-UI only works with org-roam! If you organize your notes in some other form org-roam-ui cannot work, as it uses org-roam to fetch all the connections.
-- Feature-parity with org-roam-server is not the goal. Although we aim to make a similar product which is having a visual graph to help you explore and navigate your org-roam nodes, we do not intend to replicate all of the, nor be limited to replicating the features of org-roam-server.
-- This is alpha software: please do give it a try and use it, but expect bugs and troubleshooting!
-- The project was created by a couple of tinkerers to scratch their own itch. We don't get rewarded in any material way and development may stop any day (because life). The best way to keep the project alive is to [explore the code and contribute](#Contribute)!
-
 ## FAQ 🗨
 
 ### Q: Aaaaand it broke: what do?
@@ -275,10 +240,6 @@ In our experience, once the graph has actually settled and nothing needs to be r
 Hopefully, yeah! But time is limited, and so is the amount of features we can cram into this things before it implodes in itself, so we are adding things incrementally to make sure they work. That said, we'd love to hear from you!
 If your feature is not already on the [project board](https://github.com/org-roam/org-roam-ui/projects/2), please post minor feature requests such as "I want to be able to color this specific node" in [the minor feature requests discussion](https://github.com/org-roam/org-roam-ui/discussions/6) and _major_ feature requests (e.g. "I want to publish my graph) in [the major feature requests discussion](https://github.com/org-roam/org-roam-ui/discussions/66) or upvote those already posted, this way we can adjust our priorities somewhat!
 
-### Q: This doesn't work with org-roam v1/org-brain/Zettledelft!
-
-Correct! We only support org-roam v2, although we might introduce a backend agnostic implementation later.
-
 ## Features ✨
 
 Org-roam-ui's main feature is the ability to generate a graph visualization of your org-roam notes.
@@ -287,84 +248,13 @@ Org-roam-ui's main feature is the ability to generate a graph visualization of y
 
 ![image](https://user-images.githubusercontent.com/21983833/127747037-aac46e8a-8617-4436-8887-ea1ad7a3141a.png)
 
-#### Open notes in Emacs
-
-(Double) clicking a node will open the corresponding note in Emacs, very cool.
-You _don't_ need org-protocol for this, it works out of the box!
-
-https://user-images.githubusercontent.com/21983833/127747170-3b49fbde-7fc5-410f-bd26-4ffea8dae48c.mp4
-
-#### Note previewing
-
-For when you leave Emacs in a moment of weakness.
-
-https://user-images.githubusercontent.com/21983833/136845036-a6bd4b32-d78c-4bcf-aa8a-0e37c69cbbe8.mp4
-
-#### Follow your movement in Emacs!
-
-When you open a note in Emacs, org-roam-ui will move to the corresponding node on the graph.
-
-https://user-images.githubusercontent.com/21983833/127747187-7823a825-a2f8-449c-a0ec-1c5c525621dc.mp4
-
-#### Theme syncing
-
-Your gruvbox is only a `M-x orui-sync-theme` away (or you can just select them in the settings).
-
-https://user-images.githubusercontent.com/21983833/127747203-a1aeca95-7def-4caf-b2cf-8a18fa1f2059.mp4
-
-#### Filters
-
-Filter out all those "temporary" notes you'll sift through someday.
-
-https://user-images.githubusercontent.com/21983833/136944460-76b92e7c-7cf5-40d0-89f4-bdabfa41fe01.mp4
-
-#### 3 D
-
-Literally deepen your understanding of your thoughts (and it looks cool)
-
-https://user-images.githubusercontent.com/21983833/127747234-d0588cdf-623f-4d13-a060-737bc570b295.mp4
-
-## Planned features
-
-### Graph
-
-In no particular order
-
-- ~~Citation links + customization~~
-- ~~Tag filtering/coloring~~
-- ~Local graph show Nth neighbor~
-- ~Colorization options (by neighbors, centrality, etc)~
-- Setting profiles
-
-### UI in general
-
-- ~~File viewing using AST parsing~~
-- Displaying notes Andy Matushak style
-- Discovery options, e.g. "show shortest path between X and Y"
-
 # Integrations with other Org-mode packages
 
 ## [md-roam](https://github.com/nobiot/md-roam)
 
 Use markdown notes interchangeably with Org-mode notes!
 
-## Delve
-
-tbd
-
-# Supporting org-roam-ui
-
-## Chat
-
-We have a small telegram group for discussing org-roam-ui, you can join if you're cool.
-https://t.me/+sEuL2qi37yw1NzQy
-
-## Feedback
-
-For feature suggestions, please make an issue or check out the discussions for [major](https://github.com/org-roam/org-roam-ui/discussions/66) and [minor features](https://github.com/org-roam/org-roam-ui/discussions/6).
-For other feedback, please go to the [feedback discussion](https://github.com/org-roam/org-roam-ui/discussions/99), or open up a new one!
-
-## Contribute 💪
+# Contribute 💪
 
 The best way to support the continued development of org-roam-ui is to get involved yourself!
 To get started, simply
@@ -377,17 +267,4 @@ yarn dev
 
 and a development server will be lauched on `localhost:3000`.
 
-[GitHub Community Guidelines
-](https://docs.github.com/en/github/site-policy/github-community-guidelines) apply.
-
-If you are interested in being more closely involved with the project, go [here](https://github.com/org-roam/org-roam-ui/discussions/4) to have an onboarding call with a member of the core team.
-
-We would ❤️ to have you on board!
-
-## Donate
-
-If you really really like org-roam-ui, you can make a [one-time donation or sponsor one of us monthly!](https://github.com/sponsors/ThomasFKJorna/)
-
-### Sponsors
-
-<!-- sponsors --><a href="https://github.com/queitsch"><img src="https://github.com/queitsch.png" width="60px" alt="" /></a><a href="https://github.com/HaydenLeBaron"><img src="https://github.com/HaydenLeBaron.png" width="60px" alt="" /></a><a href="https://github.com/kohlsudduth"><img src="https://github.com/kohlsudduth.png" width="60px" alt="" /></a><a href="https://github.com/vg-1414"><img src="https://github.com/vg-1414.png" width="60px" alt="" /></a><!-- sponsors -->
+[GitHub Community Guidelines](https://docs.github.com/en/github/site-policy/github-community-guidelines) apply.
