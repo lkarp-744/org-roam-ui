@@ -6,7 +6,7 @@ import { ForceGraph2D, ForceGraph3D } from 'react-force-graph';
 
 import { EmacsVariables, LinksByNodeId, NodeById, Scope } from '../../pages';
 import { Box, useTheme } from '@chakra-ui/react';
-import { useAnimation } from '@lilib/hooks';
+import { useAnimation } from '../../util/hooks';
 import * as d3int from 'd3-interpolate';
 import React, {
   ComponentPropsWithoutRef,
@@ -437,16 +437,14 @@ export default function ({
 
   // this is for animations, it's a bit hacky and can definitely be optimized
   const [opacity, setOpacity] = useState(1);
-  const [fadeIn, cancel] = useAnimation((x) => setOpacity(x), {
-    duration: visuals.animationSpeed,
-    algorithm: algos[visuals.algorithmName],
-  });
+  const [fadeIn, cancel] = useAnimation((x) => setOpacity(x),
+    visuals.animationSpeed,
+    algos[visuals.algorithmName]
+  );
   const [fadeOut, fadeOutCancel] = useAnimation(
     (x) => setOpacity(Math.min(opacity, -1 * (x - 1))),
-    {
-      duration: visuals.animationSpeed,
-      algorithm: algos[visuals.algorithmName],
-    }
+     visuals.animationSpeed,
+     algos[visuals.algorithmName],
   );
 
   const highlightedNodes = useMemo(() => {
