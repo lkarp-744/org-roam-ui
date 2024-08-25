@@ -1,64 +1,68 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 export function usePersistantState<V>(
   storageKey: string,
   defaultValue: V,
   options: {
-    storage?: Storage
-  } = {},
+    storage?: Storage;
+  } = {}
 ): [V, (v: V | ((v: V) => V)) => void] {
-  const storage = getStorage<V | undefined>(storageKey, options.storage ?? localStorage)
+  const storage = getStorage<V | undefined>(
+    storageKey,
+    options.storage ?? localStorage
+  );
 
-  const storageValue = storage.get()
-  const calculatedDefaultValue = storageValue !== undefined ? storageValue : defaultValue
+  const storageValue = storage.get();
+  const calculatedDefaultValue =
+    storageValue !== undefined ? storageValue : defaultValue;
   const calculatedDefaultValueObject =
     storageValue != null &&
     typeof storageValue === 'object' &&
     Array.isArray(storageValue) === false
       ? { ...defaultValue, ...storageValue }
-      : calculatedDefaultValue
+      : calculatedDefaultValue;
   if (calculatedDefaultValueObject !== storageValue) {
-    storage.update(calculatedDefaultValueObject)
+    storage.update(calculatedDefaultValueObject);
   }
-  const [value, setValue] = useState<V>(calculatedDefaultValueObject)
+  const [value, setValue] = useState<V>(calculatedDefaultValueObject);
 
   // change state gracefully when changing the storageKey
   useEffect(() => {
     if (value !== calculatedDefaultValueObject) {
-      setValue(calculatedDefaultValueObject)
+      setValue(calculatedDefaultValueObject);
     }
-  }, [storageKey])
+  }, [storageKey]);
   const set = (newValueOrFn: V | ((v: V) => V)) => {
     if (newValueOrFn instanceof Function) {
       setValue((oldValue) => {
-        const newValue = newValueOrFn(oldValue)
-        storage.update(newValue)
-        return newValue
-      })
-      return
+        const newValue = newValueOrFn(oldValue);
+        storage.update(newValue);
+        return newValue;
+      });
+      return;
     }
-    setValue(newValueOrFn)
-    storage.update(newValueOrFn)
-  }
+    setValue(newValueOrFn);
+    storage.update(newValueOrFn);
+  };
 
-  return [value, set]
+  return [value, set];
 }
 
 export function getStorage<T>(key: string, storage: Storage) {
   return {
     get(): T | undefined {
-      const value = storage.getItem(key)
+      const value = storage.getItem(key);
       if (value && value !== 'undefined') {
-        return JSON.parse(value)
+        return JSON.parse(value);
       }
 
-      return undefined
+      return undefined;
     },
     update(updatedState: T) {
-      storage.setItem(key, JSON.stringify(updatedState))
+      storage.setItem(key, JSON.stringify(updatedState));
     },
     remove() {
-      storage.removeItem(key)
+      storage.removeItem(key);
     },
-  }
+  };
 }

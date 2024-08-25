@@ -10,24 +10,27 @@ import {
   StackDivider,
   Switch,
   VStack,
-} from '@chakra-ui/react'
-import React, { useCallback } from 'react'
-import { initialPhysics } from '../../config'
-import { EnableSection } from '../EnableSection'
-import { SliderWithInfo } from '../SliderWithInfo'
+} from '@chakra-ui/react';
+import React, { useCallback } from 'react';
+import { initialPhysics } from '../../config';
+import { EnableSection } from '../EnableSection';
+import { SliderWithInfo } from '../SliderWithInfo';
 
 export interface PhysicsPanelProps {
-  physics: typeof initialPhysics
-  setPhysics: any
+  physics: typeof initialPhysics;
+  setPhysics: any;
 }
 
 export const PhysicsPanel = (props: PhysicsPanelProps) => {
-  const { physics, setPhysics } = props
-  const setPhysicsCallback = useCallback((val: number, phys: string, scale: number) => {
-    setPhysics((curr: typeof initialPhysics) => {
-      return { ...curr, [phys]: val / scale }
-    })
-  }, [])
+  const { physics, setPhysics } = props;
+  const setPhysicsCallback = useCallback(
+    (val: number, phys: string, scale: number) => {
+      setPhysics((curr: typeof initialPhysics) => {
+        return { ...curr, [phys]: val / scale };
+      });
+    },
+    []
+  );
   return (
     <Box>
       <VStack
@@ -41,15 +44,17 @@ export const PhysicsPanel = (props: PhysicsPanelProps) => {
         <EnableSection
           label="Gravity"
           value={physics.gravityOn}
-          onChange={() => setPhysics({ ...physics, gravityOn: !physics.gravityOn })}
+          onChange={() =>
+            setPhysics({ ...physics, gravityOn: !physics.gravityOn })
+          }
         >
           <Flex justifyContent="space-between">
             <Text>Also in local</Text>
             <Switch
               onChange={() => {
                 setPhysics((curr: typeof initialPhysics) => {
-                  return { ...curr, gravityLocal: !curr.gravityLocal }
-                })
+                  return { ...curr, gravityLocal: !curr.gravityLocal };
+                });
               }}
               isChecked={physics.gravityLocal}
             ></Switch>
@@ -96,11 +101,15 @@ export const PhysicsPanel = (props: PhysicsPanelProps) => {
                   label="Collision"
                   infoText="Perfomance sap, disable if slow"
                   value={physics.collision}
-                  onChange={() => setPhysics({ ...physics, collision: !physics.collision })}
+                  onChange={() =>
+                    setPhysics({ ...physics, collision: !physics.collision })
+                  }
                 >
                   <SliderWithInfo
                     value={physics.collisionStrength / 5}
-                    onChange={(v) => setPhysicsCallback(v, 'collisionStrength', 1 / 5)}
+                    onChange={(v) =>
+                      setPhysicsCallback(v, 'collisionStrength', 1 / 5)
+                    }
                     label="Collision Radius"
                     infoText="Easy with this one, high values can lead to a real jiggly mess"
                   />
@@ -122,7 +131,9 @@ export const PhysicsPanel = (props: PhysicsPanelProps) => {
                 <EnableSection
                   label="Center nodes"
                   value={physics.centering}
-                  onChange={() => setPhysics({ ...physics, centering: !physics.centering })}
+                  onChange={() =>
+                    setPhysics({ ...physics, centering: !physics.centering })
+                  }
                   infoText="Keeps the nodes in the center of the viewport. If disabled you can drag the nodes anywhere you want."
                 >
                   <SliderWithInfo
@@ -130,7 +141,9 @@ export const PhysicsPanel = (props: PhysicsPanelProps) => {
                     value={physics.centeringStrength}
                     max={2}
                     step={0.01}
-                    onChange={(v) => setPhysicsCallback(v, 'centeringStrength', 1)}
+                    onChange={(v) =>
+                      setPhysicsCallback(v, 'centeringStrength', 1)
+                    }
                   />
                 </EnableSection>
               </VStack>
@@ -139,5 +152,5 @@ export const PhysicsPanel = (props: PhysicsPanelProps) => {
         </Accordion>
       </Box>
     </Box>
-  )
-}
+  );
+};

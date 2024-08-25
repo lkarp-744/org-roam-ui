@@ -1,15 +1,15 @@
-import { Box, Select, StackDivider, VStack } from '@chakra-ui/react'
-import React from 'react'
-import { initialVisuals } from '../../config'
-import { EnableSection } from '../EnableSection'
-import { SliderWithInfo } from '../SliderWithInfo'
+import { Box, Select, StackDivider, VStack } from '@chakra-ui/react';
+import React from 'react';
+import { initialVisuals } from '../../config';
+import { EnableSection } from '../EnableSection';
+import { SliderWithInfo } from '../SliderWithInfo';
 
 export interface HighlightingPanelProps {
-  visuals: typeof initialVisuals
-  setVisuals: any
+  visuals: typeof initialVisuals;
+  setVisuals: any;
 }
 export const HighlightingPanel = (props: HighlightingPanelProps) => {
-  const { visuals, setVisuals } = props
+  const { visuals, setVisuals } = props;
   return (
     <VStack
       spacing={2}
@@ -74,7 +74,7 @@ export const HighlightingPanel = (props: HighlightingPanelProps) => {
                 setVisuals((visuals: typeof initialVisuals) => ({
                   ...visuals,
                   highlightAnim: !visuals.highlightAnim,
-                }))
+                }));
               }}
               value={visuals.highlightAnim}
             >
@@ -98,7 +98,7 @@ export const HighlightingPanel = (props: HighlightingPanelProps) => {
                   setVisuals((visuals: typeof initialVisuals) => ({
                     ...visuals,
                     algorithmName: v.target.value,
-                  }))
+                  }));
                 }}
               >
                 {visuals.algorithmOptions.map((opt: string) => (
@@ -112,5 +112,5 @@ export const HighlightingPanel = (props: HighlightingPanelProps) => {
         </EnableSection>
       </Box>
     </VStack>
-  )
-}
+  );
+};

@@ -1,16 +1,16 @@
-import { Box, StackDivider, VStack } from '@chakra-ui/react'
-import React from 'react'
-import { ColorMenu } from '../Visual/ColorMenu'
-import { colorList, initialVisuals } from '../../config'
-import { EnableSection } from '../EnableSection'
-import { SliderWithInfo } from '../SliderWithInfo'
+import { Box, StackDivider, VStack } from '@chakra-ui/react';
+import React from 'react';
+import { ColorMenu } from '../Visual/ColorMenu';
+import { colorList, initialVisuals } from '../../config';
+import { EnableSection } from '../EnableSection';
+import { SliderWithInfo } from '../SliderWithInfo';
 
 export interface CitationsPanelProps {
-  visuals: typeof initialVisuals
-  setVisuals: any
+  visuals: typeof initialVisuals;
+  setVisuals: any;
 }
 export const CitationsPanel = (props: CitationsPanelProps) => {
-  const { visuals, setVisuals } = props
+  const { visuals, setVisuals } = props;
   return (
     <VStack
       spacing={2}
@@ -24,17 +24,23 @@ export const CitationsPanel = (props: CitationsPanelProps) => {
           label="Dash cite links"
           infoText="Add dashes to citation links made with org-roam-bibtex"
           value={visuals.citeDashes}
-          onChange={() => setVisuals({ ...visuals, citeDashes: !visuals.citeDashes })}
+          onChange={() =>
+            setVisuals({ ...visuals, citeDashes: !visuals.citeDashes })
+          }
         >
           <SliderWithInfo
             label="Dash length"
             value={visuals.citeDashLength / 10}
-            onChange={(value) => setVisuals({ ...visuals, citeDashLength: value * 10 })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, citeDashLength: value * 10 })
+            }
           />
           <SliderWithInfo
             label="Gap length"
             value={visuals.citeGapLength / 5}
-            onChange={(value) => setVisuals({ ...visuals, citeGapLength: value * 5 })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, citeGapLength: value * 5 })
+            }
           />
         </EnableSection>
         <ColorMenu
@@ -62,17 +68,23 @@ export const CitationsPanel = (props: CitationsPanelProps) => {
           label="Dash ref links"
           infoText="Add dashes to citation links, whose target has a note, made with org-roam-bibtex"
           value={visuals.refDashes}
-          onChange={() => setVisuals({ ...visuals, refDashes: !visuals.refDashes })}
+          onChange={() =>
+            setVisuals({ ...visuals, refDashes: !visuals.refDashes })
+          }
         >
           <SliderWithInfo
             label="Dash length"
             value={visuals.refDashLength / 10}
-            onChange={(value) => setVisuals({ ...visuals, refDashLength: value * 10 })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, refDashLength: value * 10 })
+            }
           />
           <SliderWithInfo
             label="Gap length"
             value={visuals.refGapLength / 5}
-            onChange={(value) => setVisuals({ ...visuals, refGapLength: value * 5 })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, refGapLength: value * 5 })
+            }
           />
         </EnableSection>
         <ColorMenu
@@ -98,5 +110,5 @@ export const CitationsPanel = (props: CitationsPanelProps) => {
         />
       </Box>
     </VStack>
-  )
-}
+  );
+};

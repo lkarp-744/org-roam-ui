@@ -1,57 +1,48 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { Toolbar } from './Toolbar'
-import { TagBar } from './TagBar'
-import { Note } from './Note'
-import { Title } from './Title'
+import { Toolbar } from './Toolbar';
+import { TagBar } from './TagBar';
+import { Note } from './Note';
+import { Title } from './Title';
 
-import { VStack, Flex, Box, IconButton } from '@chakra-ui/react'
-import { Collapse } from './Collapse'
-import { Scrollbars } from 'react-custom-scrollbars-2'
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  CloseIcon,
-  HamburgerIcon,
-  ViewIcon,
-  ViewOffIcon,
-} from '@chakra-ui/icons'
-import { BiDotsVerticalRounded, BiFile, BiNetworkChart } from 'react-icons/bi'
+import { VStack, Flex, Box, IconButton } from '@chakra-ui/react';
+import { Collapse } from './Collapse';
+import { Scrollbars } from 'react-custom-scrollbars-2';
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 
-import { GraphData, NodeObject, LinkObject } from 'force-graph'
-import { OrgRoamNode } from '../../api'
-import { ThemeContext } from '../../util/themecontext'
-import { LinksByNodeId, NodeByCite, NodeById, Scope } from '../../pages/index'
-import { Resizable } from 're-resizable'
-import { usePersistantState } from '../../util/persistant-state'
-import { initialFilter, TagColors } from '../config'
+import { NodeObject } from 'force-graph';
+import { OrgRoamNode } from '../../api';
+import { LinksByNodeId, NodeByCite, NodeById, Scope } from '../../pages/index';
+import { Resizable } from 're-resizable';
+import { usePersistantState } from '../../util/persistant-state';
+import { initialFilter, TagColors } from '../config';
 
 export interface SidebarProps {
-  isOpen: boolean
-  onClose: any
-  onOpen: any
-  nodeById: NodeById
-  previewNode: NodeObject
-  setPreviewNode: any
-  linksByNodeId: LinksByNodeId
-  nodeByCite: NodeByCite
-  setSidebarHighlightedNode: any
-  canUndo: any
-  canRedo: any
-  resetPreviewNode: any
-  previousPreviewNode: any
-  nextPreviewNode: any
-  openContextMenu: any
-  scope: Scope
-  setScope: any
-  windowWidth: number
-  filter: typeof initialFilter
-  setFilter: any
-  tagColors: TagColors
-  setTagColors: any
-  macros?: { [key: string]: string }
-  attachDir: string
-  useInheritance: boolean
+  isOpen: boolean;
+  onClose: any;
+  onOpen: any;
+  nodeById: NodeById;
+  previewNode: NodeObject;
+  setPreviewNode: any;
+  linksByNodeId: LinksByNodeId;
+  nodeByCite: NodeByCite;
+  setSidebarHighlightedNode: any;
+  canUndo: any;
+  canRedo: any;
+  resetPreviewNode: any;
+  previousPreviewNode: any;
+  nextPreviewNode: any;
+  openContextMenu: any;
+  scope: Scope;
+  setScope: any;
+  windowWidth: number;
+  filter: typeof initialFilter;
+  setFilter: any;
+  tagColors: TagColors;
+  setTagColors: any;
+  macros?: { [key: string]: string };
+  attachDir: string;
+  useInheritance: boolean;
 }
 
 const Sidebar = (props: SidebarProps) => {
@@ -71,8 +62,6 @@ const Sidebar = (props: SidebarProps) => {
     previousPreviewNode,
     nextPreviewNode,
     openContextMenu,
-    scope,
-    setScope,
     windowWidth,
     filter,
     setFilter,
@@ -81,27 +70,36 @@ const Sidebar = (props: SidebarProps) => {
     macros,
     attachDir,
     useInheritance,
-  } = props
+  } = props;
 
-  const { highlightColor } = useContext(ThemeContext)
-  const [previewRoamNode, setPreviewRoamNode] = useState<OrgRoamNode | undefined>()
-  const [sidebarWidth, setSidebarWidth] = usePersistantState<number>('sidebarWidth', 400)
+  const [previewRoamNode, setPreviewRoamNode] = useState<
+    OrgRoamNode | undefined
+  >();
+  const [sidebarWidth, setSidebarWidth] = usePersistantState<number>(
+    'sidebarWidth',
+    400
+  );
 
   useEffect(() => {
     if (!previewNode?.id) {
-      onClose()
-      return
+      onClose();
+      return;
     }
-    onOpen()
-    setPreviewRoamNode(previewNode as OrgRoamNode)
-  }, [previewNode?.id])
+    onOpen();
+    setPreviewRoamNode(previewNode as OrgRoamNode);
+  }, [previewNode?.id]);
 
-  const [justification, setJustification] = usePersistantState('justification', 1)
-  const [outline, setOutline] = usePersistantState('outline', false)
-  const justificationList = ['justify', 'start', 'end', 'center']
-  const [font, setFont] = useState('sans serif')
-  const [indent, setIndent] = useState(0)
-  const [collapse, setCollapse] = useState(false)
+  const [justification, setJustification] = usePersistantState(
+    'justification',
+    1
+  );
+  const [outline, setOutline] = usePersistantState('outline', false);
+  const justificationList = ['justify', 'start', 'end', 'center'];
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [font, setFont] = useState('sans serif');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [indent, setIndent] = useState(0);
+  const [collapse, setCollapse] = useState(false);
   //maybe want to close it when clicking outside, but not sure
   //const outsideClickRef = useRef();
   return (
@@ -117,7 +115,7 @@ const Sidebar = (props: SidebarProps) => {
       <Resizable
         size={{ height: '100vh', width: sidebarWidth }}
         onResizeStop={(e, direction, ref, d) => {
-          setSidebarWidth((curr: number) => curr + d.width)
+          setSidebarWidth((curr: number) => curr + d.width);
         }}
         enable={{
           top: false,
@@ -132,7 +130,14 @@ const Sidebar = (props: SidebarProps) => {
         minWidth="220px"
         maxWidth={windowWidth - 200}
       >
-        <Flex flexDir="column" h="100vh" pl={2} color="black" bg="alt.100" width="100%">
+        <Flex
+          flexDir="column"
+          h="100vh"
+          pl={2}
+          color="black"
+          bg="alt.100"
+          width="100%"
+        >
           <Flex
             //whiteSpace="nowrap"
             // overflow="hidden"
@@ -167,13 +172,12 @@ const Sidebar = (props: SidebarProps) => {
               textOverflow="ellipsis"
               overflow="hidden"
               onContextMenu={(e) => {
-                e.preventDefault()
-                openContextMenu(previewNode, e)
+                e.preventDefault();
+                openContextMenu(previewNode, e);
               }}
             ></Flex>
             <Flex flexDir="row" ml="auto">
               <IconButton
-                // eslint-disable-next-line react/jsx-no-undef
                 m={1}
                 icon={<BiDotsVerticalRounded />}
                 aria-label="Options"
@@ -184,7 +188,7 @@ const Sidebar = (props: SidebarProps) => {
                     top: 12,
                     right: -windowWidth + 20,
                     bottom: undefined,
-                  })
+                  });
                 }}
               />
             </Flex>
@@ -215,7 +219,14 @@ const Sidebar = (props: SidebarProps) => {
               >
                 <Title previewNode={previewRoamNode} />
                 <TagBar
-                  {...{ filter, setFilter, tagColors, setTagColors, openContextMenu, previewNode }}
+                  {...{
+                    filter,
+                    setFilter,
+                    tagColors,
+                    setTagColors,
+                    openContextMenu,
+                    previewNode,
+                  }}
                 />
                 <Note
                   {...{
@@ -242,7 +253,7 @@ const Sidebar = (props: SidebarProps) => {
         </Flex>
       </Resizable>
     </Collapse>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

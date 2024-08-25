@@ -1,28 +1,31 @@
-import React from 'react'
-import { NodeObject } from 'force-graph'
+import React from 'react';
+import { NodeObject } from 'force-graph';
 
-import { NodeById, NodeByCite, LinksByNodeId } from '../../pages'
-import { Box, Flex } from '@chakra-ui/react'
-import { UniOrg } from '../../util/uniorg'
-import { Backlinks } from '../../components/Sidebar/Backlinks'
-import { defaultNoteStyle, viewerNoteStyle, outlineNoteStyle } from './noteStyle'
-import { OrgRoamLink } from '../../api'
+import { NodeById, NodeByCite, LinksByNodeId } from '../../pages';
+import { Box, Flex } from '@chakra-ui/react';
+import { UniOrg } from '../../util/uniorg';
+import { Backlinks } from '../../components/Sidebar/Backlinks';
+import {
+  defaultNoteStyle,
+  viewerNoteStyle,
+  outlineNoteStyle,
+} from './noteStyle';
 
 export interface NoteProps {
-  setPreviewNode: any
-  previewNode: NodeObject
-  nodeById: NodeById
-  nodeByCite: NodeByCite
-  setSidebarHighlightedNode: any
-  justification: number
-  justificationList: string[]
-  linksByNodeId: LinksByNodeId
-  openContextMenu: any
-  outline: boolean
-  collapse: boolean
-  macros?: { [key: string]: string }
-  attachDir: string
-  useInheritance: boolean
+  setPreviewNode: any;
+  previewNode: NodeObject;
+  nodeById: NodeById;
+  nodeByCite: NodeByCite;
+  setSidebarHighlightedNode: any;
+  justification: number;
+  justificationList: string[];
+  linksByNodeId: LinksByNodeId;
+  openContextMenu: any;
+  outline: boolean;
+  collapse: boolean;
+  macros?: { [key: string]: string };
+  attachDir: string;
+  useInheritance: boolean;
 }
 
 export const Note = (props: NoteProps) => {
@@ -41,9 +44,9 @@ export const Note = (props: NoteProps) => {
     macros,
     attachDir,
     useInheritance,
-  } = props
+  } = props;
 
-  const extraStyle = outline ? outlineNoteStyle : viewerNoteStyle
+  const extraStyle = outline ? outlineNoteStyle : viewerNoteStyle;
   return (
     <Box
       pr={8}
@@ -97,5 +100,5 @@ export const Note = (props: NoteProps) => {
         </Flex>
       )}
     </Box>
-  )
-}
+  );
+};

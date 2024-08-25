@@ -1,18 +1,18 @@
-import { Easing } from '@tweenjs/tween.js'
-const options: string[] = []
-const algorithms: { [name: string]: (percent: number) => number } = {}
-for (let type in Easing) {
-  for (let mode in (Easing as any)[type]) {
-    let name = type + mode
+import { Easing } from '@tweenjs/tween.js';
+const options: string[] = [];
+const algorithms: { [name: string]: (percent: number) => number } = {};
+for (const type in Easing) {
+  for (const mode in (Easing as any)[type]) {
+    let name = type + mode;
     if (name === 'LinearNone') {
-      name = 'Linear'
+      name = 'Linear';
     }
-    options.push(name)
-    algorithms[name] = (Easing as any)[type][mode]
+    options.push(name);
+    algorithms[name] = (Easing as any)[type][mode];
   }
 }
 
-export const algos = algorithms
+export const algos = algorithms;
 
 export const initialPhysics = {
   enabled: true,
@@ -30,7 +30,7 @@ export const initialPhysics = {
   gravity: 0.3,
   gravityOn: true,
   gravityLocal: false,
-}
+};
 
 export const initialFilter = {
   orphans: false,
@@ -46,10 +46,10 @@ export const initialFilter = {
   links: [],
   date: [],
   noter: true,
-}
+};
 export const initialColoring = {
   method: 'degree',
-}
+};
 
 export const initialVisuals = {
   particles: false,
@@ -113,10 +113,10 @@ export const initialVisuals = {
   refNodeColor: 'black',
   nodeSizeLinks: 0.5,
   nodeZoomSize: 1.2,
-}
+};
 
 export interface TagColors {
-  [tag: string]: string
+  [tag: string]: string;
 }
 
 export const initialBehavior = {
@@ -124,7 +124,7 @@ export const initialBehavior = {
   localSame: 'add',
   zoomPadding: 200,
   zoomSpeed: 2000,
-}
+};
 
 export const initialMouse = {
   highlight: 'hover',
@@ -133,11 +133,11 @@ export const initialMouse = {
   context: 'right',
   preview: 'click',
   backgroundExitsLocal: false,
-}
+};
 
 export const initialLocal = {
   neighbors: 1,
-}
+};
 
 export const colorList = [
   'red.500',
@@ -159,4 +159,4 @@ export const colorList = [
   'gray.800',
   'gray.900',
   'black',
-]
+];

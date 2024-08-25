@@ -1,37 +1,37 @@
 // Taken from https://github.com/chakra-ui/chakra-ui/blob/fc3b97d0978cf2adb9fc79157c6e42b4b68155c5/packages/transition/src/transition-utils.ts
-import { isNumber } from '@chakra-ui/utils'
-import { Target, TargetAndTransition, Transition } from 'framer-motion'
+import { isNumber } from '@chakra-ui/utils';
+import { Target, TargetAndTransition, Transition } from 'framer-motion';
 
-type TargetResolver<P = {}> = (
+type TargetResolver<P = unknown> = (
   props: P & {
-    transition?: TransitionConfig
-    transitionEnd?: TransitionEndConfig
-    delay?: number | DelayConfig
-  },
-) => TargetAndTransition
+    transition?: TransitionConfig;
+    transitionEnd?: TransitionEndConfig;
+    delay?: number | DelayConfig;
+  }
+) => TargetAndTransition;
 
-type Variant<P = {}> = TargetAndTransition | TargetResolver<P>
+type Variant<P = unknown> = TargetAndTransition | TargetResolver<P>;
 
-export type Variants<P = {}> = {
-  enter: Variant<P>
-  exit: Variant<P>
-  initial?: Variant<P>
-}
+export type Variants<P = unknown> = {
+  enter: Variant<P>;
+  exit: Variant<P>;
+  initial?: Variant<P>;
+};
 
-type WithMotionState<P> = Partial<Record<'enter' | 'exit', P>>
+type WithMotionState<P> = Partial<Record<'enter' | 'exit', P>>;
 
-export type TransitionConfig = WithMotionState<Transition>
+export type TransitionConfig = WithMotionState<Transition>;
 
-export type TransitionEndConfig = WithMotionState<Target>
+export type TransitionEndConfig = WithMotionState<Target>;
 
-export type DelayConfig = WithMotionState<number>
+export type DelayConfig = WithMotionState<number>;
 
 export const TransitionEasings = {
   ease: [0.25, 0.1, 0.25, 1],
   easeIn: [0.4, 0, 1, 1],
   easeOut: [0, 0, 0.2, 1],
   easeInOut: [0.4, 0, 0.2, 1],
-} as const
+} as const;
 
 export const TransitionVariants = {
   scale: {
@@ -78,23 +78,23 @@ export const TransitionVariants = {
     enter: { y: 0 },
     exit: { y: '100%' },
   },
-}
+};
 
-export type SlideDirection = 'top' | 'left' | 'bottom' | 'right'
+export type SlideDirection = 'top' | 'left' | 'bottom' | 'right';
 
 export function slideTransition(options?: { direction?: SlideDirection }) {
-  const side = options?.direction ?? 'right'
+  const side = options?.direction ?? 'right';
   switch (side) {
     case 'right':
-      return TransitionVariants.slideRight
+      return TransitionVariants.slideRight;
     case 'left':
-      return TransitionVariants.slideLeft
+      return TransitionVariants.slideLeft;
     case 'bottom':
-      return TransitionVariants.slideDown
+      return TransitionVariants.slideDown;
     case 'top':
-      return TransitionVariants.slideUp
+      return TransitionVariants.slideUp;
     default:
-      return TransitionVariants.slideRight
+      return TransitionVariants.slideRight;
   }
 }
 
@@ -107,30 +107,30 @@ export const TransitionDefaults = {
     duration: 0.1,
     ease: TransitionEasings.easeIn,
   },
-} as const
+} as const;
 
 export type WithTransitionConfig<P extends object> = Omit<P, 'transition'> & {
   /**
    * If `true`, the element will unmount when `in={false}` and animation is done
    */
-  unmountOnExit?: boolean
+  unmountOnExit?: boolean;
   /**
    * Show the component; triggers the enter or exit states
    */
-  in?: boolean
+  in?: boolean;
   /**
    * Custom `transition` definition for `enter` and `exit`
    */
-  transition?: TransitionConfig
+  transition?: TransitionConfig;
   /**
    * Custom `transitionEnd` definition for `enter` and `exit`
    */
-  transitionEnd?: TransitionEndConfig
+  transitionEnd?: TransitionEndConfig;
   /**
    * Custom `delay` definition for `enter` and `exit`
    */
-  delay?: number | DelayConfig
-}
+  delay?: number | DelayConfig;
+};
 
 export const withDelay = {
   enter: (transition: Transition, delay?: number | DelayConfig) => ({
@@ -141,4 +141,4 @@ export const withDelay = {
     ...transition,
     delay: isNumber(delay) ? delay : delay?.['exit'],
   }),
-}
+};

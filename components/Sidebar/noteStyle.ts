@@ -6,7 +6,13 @@ export const viewerNoteStyle = {
   '.outlineHeadingButton': {
     display: 'none',
   },
-  h1: { color: 'black', lineHeight: '1.2', fontSize: '16', fontWeight: 'bold', paddingTop: 2 },
+  h1: {
+    color: 'black',
+    lineHeight: '1.2',
+    fontSize: '16',
+    fontWeight: 'bold',
+    paddingTop: 2,
+  },
   h2: {
     fontSize: '14',
     color: 'black',
@@ -29,7 +35,7 @@ export const viewerNoteStyle = {
   '.sectionContent': {
     paddingTop: 2,
   },
-}
+};
 
 export const outlineNoteStyle = {
   '.headingFlex': {
@@ -72,7 +78,7 @@ export const outlineNoteStyle = {
     fontSize: 14,
     pb: 2,
   },
-}
+};
 
 export const defaultNoteStyle = {
   '.katex': { overflowX: 'scroll' },
@@ -160,7 +166,11 @@ export const defaultNoteStyle = {
   '.timestamp-kwd': { color: '#5f9ea0' },
   '.org-right': { marginLeft: 'auto', marginRight: '0px', textAlign: 'right' },
   '.org-left': { marginLeft: '0px', marginRight: 'auto', textAlign: 'left' },
-  '.org-center': { marginLeft: 'auto', marginRight: 'auto', textAlign: 'center' },
+  '.org-center': {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    textAlign: 'center',
+  },
   '.underline': { textDecoration: 'underline' },
   '#postamble p': { fontSize: '90%', margin: '.2em' },
   '#preamble p': { fontSize: '90%', margin: '.2em' },
@@ -201,6 +211,6 @@ export const defaultNoteStyle = {
   '.figure p': { textAlign: 'center' },
   '.math.math-display .katex': {
     overflow: 'auto',
-    minHeight: '1.5em'
-  }
-}
+    minHeight: '1.5em',
+  },
+};

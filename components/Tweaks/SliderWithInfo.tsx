@@ -6,19 +6,19 @@ import {
   SliderThumb,
   SliderTrack,
   Tooltip,
-} from '@chakra-ui/react'
-import React, { useContext } from 'react'
-import { ThemeContext } from '../../util/themecontext'
-import { InfoTooltip } from './InfoTooltip'
+} from '@chakra-ui/react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../util/themecontext';
+import { InfoTooltip } from './InfoTooltip';
 
 export interface SliderWithInfoProps {
-  min?: number
-  max?: number
-  step?: number
-  value: number
-  onChange: (arg0: number) => void
-  label: string
-  infoText?: string
+  min?: number;
+  max?: number;
+  step?: number;
+  value: number;
+  onChange: (arg0: number) => void;
+  label: string;
+  infoText?: string;
 }
 export const SliderWithInfo = ({
   min = 0,
@@ -27,8 +27,8 @@ export const SliderWithInfo = ({
   value = 1,
   ...rest
 }: SliderWithInfoProps) => {
-  const { onChange, label, infoText } = rest
-  const { highlightColor } = useContext(ThemeContext)
+  const { onChange, label, infoText } = rest;
+  const { highlightColor } = useContext(ThemeContext);
   return (
     <Box key={label} pt={1} pb={2}>
       <Box display="flex" alignItems="flex-end" mb={2}>
@@ -44,5 +44,5 @@ export const SliderWithInfo = ({
         </Tooltip>
       </Slider>
     </Box>
-  )
-}
+  );
+};

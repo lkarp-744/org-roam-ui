@@ -1,7 +1,5 @@
-import { createContext } from 'react'
-import { EmacsVariables } from '../pages'
-
-type Theme = [name: string, themeObject: { [color: string]: string }]
+import { createContext } from 'react';
+import { EmacsVariables } from '../pages';
 
 const VariablesContext = createContext<EmacsVariables>({
   subDirs: ['dailies', '.attach'],
@@ -9,5 +7,5 @@ const VariablesContext = createContext<EmacsVariables>({
   useInheritance: false,
   roamDir: '~/org',
   dailyDir: 'dailies',
-})
-export { VariablesContext }
+});
+export { VariablesContext };

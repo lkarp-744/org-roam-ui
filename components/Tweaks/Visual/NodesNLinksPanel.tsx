@@ -1,18 +1,18 @@
-import { Box, StackDivider, VStack } from '@chakra-ui/react'
-import React from 'react'
-import { ColorMenu } from './ColorMenu'
-import { colorList, initialVisuals } from '../../config'
-import { EnableSection } from '../EnableSection'
-import { SliderWithInfo } from '../SliderWithInfo'
+import { Box, StackDivider, VStack } from '@chakra-ui/react';
+import React from 'react';
+import { ColorMenu } from './ColorMenu';
+import { colorList, initialVisuals } from '../../config';
+import { EnableSection } from '../EnableSection';
+import { SliderWithInfo } from '../SliderWithInfo';
 
 export interface NodesNLinksPanelProps {
-  visuals: typeof initialVisuals
-  setVisuals: any
-  threeDim: boolean
+  visuals: typeof initialVisuals;
+  setVisuals: any;
+  threeDim: boolean;
 }
 
 export const NodesNLinksPanel = (props: NodesNLinksPanelProps) => {
-  const { visuals, setVisuals, threeDim } = props
+  const { visuals, setVisuals, threeDim } = props;
   return (
     <VStack
       spacing={2}
@@ -54,7 +54,9 @@ export const NodesNLinksPanel = (props: NodesNLinksPanelProps) => {
               value={visuals.nodeOpacity}
               min={0}
               max={1}
-              onChange={(value) => setVisuals({ ...visuals, nodeOpacity: value })}
+              onChange={(value) =>
+                setVisuals({ ...visuals, nodeOpacity: value })
+              }
             />
             <SliderWithInfo
               label="Node resolution"
@@ -62,7 +64,9 @@ export const NodesNLinksPanel = (props: NodesNLinksPanelProps) => {
               min={5}
               max={32}
               step={1}
-              onChange={(value) => setVisuals({ ...visuals, nodeResolution: value })}
+              onChange={(value) =>
+                setVisuals({ ...visuals, nodeResolution: value })
+              }
             />
           </>
         )}
@@ -88,7 +92,9 @@ export const NodesNLinksPanel = (props: NodesNLinksPanelProps) => {
           <SliderWithInfo
             label="Arrow size"
             value={visuals.arrowsLength / 10}
-            onChange={(value) => setVisuals({ ...visuals, arrowsLength: 10 * value })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, arrowsLength: 10 * value })
+            }
           />
           <SliderWithInfo
             label="Arrow Position"
@@ -110,22 +116,28 @@ export const NodesNLinksPanel = (props: NodesNLinksPanelProps) => {
         <EnableSection
           label="Directional Particles"
           value={visuals.particles}
-          onChange={() => setVisuals({ ...visuals, particles: !visuals.particles })}
+          onChange={() =>
+            setVisuals({ ...visuals, particles: !visuals.particles })
+          }
         >
           <SliderWithInfo
             label="Particle Number"
             value={visuals.particlesNumber}
             max={5}
             step={1}
-            onChange={(value) => setVisuals({ ...visuals, particlesNumber: value })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, particlesNumber: value })
+            }
           />
           <SliderWithInfo
             label="Particle Size"
             value={visuals.particlesWidth}
-            onChange={(value) => setVisuals({ ...visuals, particlesWidth: value })}
+            onChange={(value) =>
+              setVisuals({ ...visuals, particlesWidth: value })
+            }
           />
         </EnableSection>
       </Box>
     </VStack>
-  )
-}
+  );
+};

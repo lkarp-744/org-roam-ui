@@ -7,5 +7,5 @@ export function hexToRGBA(hex: string, opacity: number) {
       .concat(isFinite(opacity) ? opacity : 1)
       .join(',') +
     ')'
-  )
+  );
 }

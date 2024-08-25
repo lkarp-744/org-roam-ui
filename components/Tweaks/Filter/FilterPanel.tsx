@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
   Text,
   Box,
@@ -17,24 +17,24 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
-} from '@chakra-ui/react'
-import React, { useContext } from 'react'
-import { OptionPanel } from '../OptionPanel'
-import { initialFilter, initialLocal, TagColors } from '../../config'
-import { TagColorPanel } from './TagColorPanel'
-import { SliderWithInfo } from '../SliderWithInfo'
-import { VariablesContext } from '../../../util/variablesContext'
+} from '@chakra-ui/react';
+import React, { useContext } from 'react';
+import { OptionPanel } from '../OptionPanel';
+import { initialFilter, initialLocal, TagColors } from '../../config';
+import { TagColorPanel } from './TagColorPanel';
+import { SliderWithInfo } from '../SliderWithInfo';
+import { VariablesContext } from '../../../util/variablesContext';
 
 export interface FilterPanelProps {
-  filter: typeof initialFilter
-  setFilter: any
-  tagColors: TagColors
-  setTagColors: any
-  highlightColor: string
-  colorList: string[]
-  tags: string[]
-  local: typeof initialLocal
-  setLocal: any
+  filter: typeof initialFilter;
+  setFilter: any;
+  tagColors: TagColors;
+  setTagColors: any;
+  highlightColor: string;
+  colorList: string[];
+  tags: string[];
+  local: typeof initialLocal;
+  setLocal: any;
 }
 
 const FilterPanel = (props: FilterPanelProps) => {
@@ -48,8 +48,8 @@ const FilterPanel = (props: FilterPanelProps) => {
     highlightColor,
     colorList,
     tags,
-  } = props
-  const { roamDir, subDirs } = useContext(VariablesContext)
+  } = props;
+  const { roamDir, subDirs } = useContext(VariablesContext);
   return (
     <Box>
       <VStack
@@ -73,11 +73,11 @@ const FilterPanel = (props: FilterPanelProps) => {
               {(() => {
                 switch (filter.parent) {
                   case 'parent':
-                    return <Text>File</Text>
+                    return <Text>File</Text>;
                   case 'heading':
-                    return <Text>Heading</Text>
+                    return <Text>Heading</Text>;
                   default:
-                    return <Text>Nothing</Text>
+                    return <Text>Nothing</Text>;
                 }
               })()}
             </MenuButton>
@@ -85,7 +85,10 @@ const FilterPanel = (props: FilterPanelProps) => {
               <MenuList bgColor="gray.200" zIndex="popover">
                 <MenuItem
                   onClick={() =>
-                    setFilter((curr: typeof initialFilter) => ({ ...curr, parent: '' }))
+                    setFilter((curr: typeof initialFilter) => ({
+                      ...curr,
+                      parent: '',
+                    }))
                   }
                 >
                   Nothing
@@ -119,8 +122,8 @@ const FilterPanel = (props: FilterPanelProps) => {
           <Switch
             onChange={() => {
               setFilter((curr: typeof initialFilter) => {
-                return { ...curr, orphans: !curr.orphans }
-              })
+                return { ...curr, orphans: !curr.orphans };
+              });
             }}
             isChecked={filter.orphans}
           ></Switch>
@@ -130,8 +133,8 @@ const FilterPanel = (props: FilterPanelProps) => {
           <Switch
             onChange={() => {
               setFilter((curr: typeof initialFilter) => {
-                return { ...curr, dailies: !curr.dailies }
-              })
+                return { ...curr, dailies: !curr.dailies };
+              });
             }}
             isChecked={filter.dailies}
           ></Switch>
@@ -141,8 +144,8 @@ const FilterPanel = (props: FilterPanelProps) => {
           <Switch
             onChange={() => {
               setFilter((curr: typeof initialFilter) => {
-                return { ...curr, noter: !curr.noter }
-              })
+                return { ...curr, noter: !curr.noter };
+              });
             }}
             isChecked={filter.noter}
           ></Switch>
@@ -151,7 +154,7 @@ const FilterPanel = (props: FilterPanelProps) => {
           <Text>Citations without note files</Text>
           <Switch
             onChange={() => {
-              setFilter({ ...filter, filelessCites: !filter.filelessCites })
+              setFilter({ ...filter, filelessCites: !filter.filelessCites });
             }}
             isChecked={filter.filelessCites}
           ></Switch>
@@ -160,8 +163,8 @@ const FilterPanel = (props: FilterPanelProps) => {
           <Text>Non-existent nodes</Text>
           <Switch
             onChange={() => {
-              setTagColors({ ...tagColors, bad: 'white' })
-              setFilter({ ...filter, bad: !filter.bad })
+              setTagColors({ ...tagColors, bad: 'white' });
+              setFilter({ ...filter, bad: !filter.bad });
             }}
             isChecked={filter.bad}
           ></Switch>
@@ -239,7 +242,7 @@ const FilterPanel = (props: FilterPanelProps) => {
         </AccordionItem>
       </Accordion>
     </Box>
-  )
-}
+  );
+};
 
-export default FilterPanel
+export default FilterPanel;
