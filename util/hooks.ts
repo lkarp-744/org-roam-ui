@@ -21,9 +21,9 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from 'react';
 // @ts-expect-error There are no type declarations for this package.
-import raf from "raf";
+import raf from 'raf';
 
 function useUnmount(effect: () => void) {
   const effectRef = useRef(effect);

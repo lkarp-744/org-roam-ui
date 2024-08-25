@@ -437,14 +437,15 @@ export default function ({
 
   // this is for animations, it's a bit hacky and can definitely be optimized
   const [opacity, setOpacity] = useState(1);
-  const [fadeIn, cancel] = useAnimation((x) => setOpacity(x),
+  const [fadeIn, cancel] = useAnimation(
+    (x) => setOpacity(x),
     visuals.animationSpeed,
     algos[visuals.algorithmName]
   );
   const [fadeOut, fadeOutCancel] = useAnimation(
     (x) => setOpacity(Math.min(opacity, -1 * (x - 1))),
-     visuals.animationSpeed,
-     algos[visuals.algorithmName],
+    visuals.animationSpeed,
+    algos[visuals.algorithmName]
   );
 
   const highlightedNodes = useMemo(() => {

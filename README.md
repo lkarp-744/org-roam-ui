@@ -1,15 +1,14 @@
-
 # org-roam-ui: a graphical frontend for your org-roam Zettelkasten
 
 <img width="1440" alt="Screenshot 2021-10-12 at 12 51 39" src="https://user-images.githubusercontent.com/21983833/136942774-3f293f65-dbd4-4479-b530-1fde738c5289.png">
 
 Org-Roam-UI is a frontend for exploring and interacting with your [org-roam](https://github.com/org-roam/org-roam) notes.
 
-## Installation 
+## Installation
 
 org-roam-ui requires `org-roam`, `websocket`, `simple-httpd`, `f` and Emacs >= 27 for fast JSON parsing.
 
-### package.el 
+### package.el
 
 ```
 M-x package-install org-roam-ui
