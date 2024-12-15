@@ -521,7 +521,7 @@ export function GraphPage() {
 
   const [windowWidth, windowHeight] = useWindowSize();
 
-  const contextMenuRef = useRef<any>();
+  const contextMenuRef = useRef<any>(null);
   const [contextMenuTarget, setContextMenuTarget] = useState<
     OrgRoamNode | string | null
   >(null);

@@ -1,6 +1,6 @@
 // modified from https://github.com/chakra-ui/chakra-ui/blob/fc3b97d0978cf2adb9fc79157c6e42b4b68155c5/packages/transition/src/collapse.tsx
 
-import { cx, mergeWith, warn, __DEV__ } from '@chakra-ui/utils';
+import { cx, mergeWith, warn } from '@chakra-ui/utils';
 import {
   AnimatePresence,
   HTMLMotionProps,
@@ -172,7 +172,3 @@ export const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
     );
   }
 );
-
-if (__DEV__) {
-  Collapse.displayName = 'Collapse';
-}

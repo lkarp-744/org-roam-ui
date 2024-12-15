@@ -44,7 +44,7 @@ function useLatestRef<T>(value: T) {
 }
 
 function usePersist<T extends (...args: any[]) => any>(callback: T) {
-  const resultRef = useRef<(...args: Parameters<T>) => ReturnType<T>>();
+  const resultRef = useRef<(...args: Parameters<T>) => ReturnType<T>>(null);
   const callbackRef = useLatestRef(callback);
 
   if (!resultRef.current) {
