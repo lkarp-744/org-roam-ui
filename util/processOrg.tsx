@@ -15,7 +15,6 @@ import remarkWikiLinks from 'remark-wiki-link';
 import remarkMath from 'remark-math';
 import remarkFrontMatter from 'remark-frontmatter';
 import remarkExtractFrontMatter from 'remark-extract-frontmatter';
-//@ts-expect-error remark sectionize does not have any type declarations
 import remarkSectionize from 'remark-sectionize';
 import remarkRehype from 'remark-rehype';
 
