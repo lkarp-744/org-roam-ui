@@ -4215,9 +4215,9 @@ three-render-objects@^1.32:
     polished "4"
 
 three-spritetext@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/three-spritetext/-/three-spritetext-1.8.2.tgz#62d8106e579274c65d86df2b56dda46b13fa97cc"
-  integrity sha512-OYjyAhWnQ6+7CPKjnpq3JQM+Lpr6cSOppCtbOOzF1IbCauGkoDFvbAnxYd0LVxEsIO2RALXXScg2eX+R6CAfyA==
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/three-spritetext/-/three-spritetext-1.9.3.tgz#25435795e9cefd5cde78525facdc9764412955d4"
+  integrity sha512-p7iEQr7anABRUJNOH2logMf1aRuWb026IshUC4aJ8F+bbMTn5Z43/Jd7/W3VihE3ToCwrWMl6u6VwgFMTw0jvA==
 
 "three@>=0.118 <1":
   version "0.171.0"
