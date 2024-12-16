@@ -1,15 +1,13 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import {
-  ChakraProvider,
-  extendTheme,
-  withDefaultColorScheme,
-} from '@chakra-ui/react';
+  defaultSystem } from '@chakra-ui/react';
 import { useEffect, useState, useMemo, useContext } from 'react';
 import * as d3int from 'd3-interpolate';
 
 import { ThemeContext } from '../util/themecontext';
 import { themes } from '../components/themes';
+import {Provider} from '@/components/ui/provider';
 
 function MyApp({ Component, pageProps }: AppProps) {
   type Theme = [string, { [color: string]: string }];
@@ -205,11 +203,7 @@ function SubApp(props: any) {
       },
     };
   }, [highlightColor, JSON.stringify(emacsTheme)]);
-
-  const extendedTheme = extendTheme(
-    theme,
-    withDefaultColorScheme({ colorScheme: highlightColor.split('.')[0] })
-  );
-  return <ChakraProvider theme={extendedTheme}>{children}</ChakraProvider>;
+  
+  return <Provider value={defaultSystem}>{children}</Provider>;
 }
 export default MyApp;
