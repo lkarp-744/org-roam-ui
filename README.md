@@ -260,8 +260,8 @@ To get started, simply
 
 ```bash
 git clone https://github.com/org-roam/org-roam-ui
-yarn
-yarn dev
+npm install
+npm run dev
 ```
 
 and a development server will be lauched on `localhost:3000`.
