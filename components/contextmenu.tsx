@@ -236,7 +236,6 @@ export const ContextMenu = (props: ContextMenuProps) => {
                 colorScheme="red"
                 ml={3}
                 onClick={() => {
-                  console.log('aaaaa');
                   deleteNodeInEmacs(target!, webSocket);
                   onClose();
                   menuClose();

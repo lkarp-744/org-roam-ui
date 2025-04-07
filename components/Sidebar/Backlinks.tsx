@@ -82,7 +82,6 @@ export const Backlinks = (props: BacklinksProps) => {
                   setSidebarHighlightedNode={setSidebarHighlightedNode}
                   href={`id:${link as string}`}
                   nodeById={nodeById}
-                  previewNode={previewNode}
                   setPreviewNode={setPreviewNode}
                   openContextMenu={openContextMenu}
                   outline={outline}

@@ -150,7 +150,6 @@ export const ProcessedOrg = (props: ProcessedOrgProps) => {
                   setPreviewNode={setPreviewNode}
                   openContextMenu={openContextMenu}
                   outline={outline}
-                  previewNode={previewNode}
                   isWiki={isMarkdown}
                   macros={macros}
                   attachDir={attachDir}
