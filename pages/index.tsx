@@ -64,7 +64,6 @@ export interface EmacsVariables {
   useInheritance?: boolean;
   subDirs: string[];
 }
-export type Tags = string[];
 export type Scope = {
   nodeIds: string[];
   excludedNodeIds: string[];
@@ -142,7 +141,6 @@ export function GraphPage() {
   const nodeByIdRef = useRef<NodeById>({});
   const linksByNodeIdRef = useRef<LinksByNodeId>({});
   const nodeByCiteRef = useRef<NodeByCite>({});
-  const tagsRef = useRef<Tags>([]);
   const graphRef = useRef<any>(null);
   const [emacsVariables, setEmacsVariables] = useState<EmacsVariables>(
     {} as EmacsVariables
@@ -153,7 +151,6 @@ export function GraphPage() {
 
   const updateGraphData = (orgRoamGraphData: OrgRoamGraphReponse) => {
     const oldNodeById = nodeByIdRef.current;
-    tagsRef.current = orgRoamGraphData.tags ?? [];
     const importNodes = orgRoamGraphData.nodes ?? [];
     const importLinks = orgRoamGraphData.links ?? [];
     const nodesByFile = importNodes.reduce<NodesByFile>((acc, node) => {
@@ -614,7 +611,6 @@ export function GraphPage() {
             local,
             setLocal,
           }}
-          tags={tagsRef.current}
         />
         <Box position="absolute">
           {graphData && (

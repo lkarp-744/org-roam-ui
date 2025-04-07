@@ -16,9 +16,7 @@ import Scrollbars from 'react-custom-scrollbars-2';
 import {
   initialFilter,
   initialVisuals,
-  initialLocal,
   TagColors,
-  colorList,
   initialColoring,
 } from '../config';
 
@@ -33,13 +31,10 @@ export interface TweakProps {
   setFilter: any;
   visuals: typeof initialVisuals;
   setVisuals: any;
-  tags: string[];
   tagColors: TagColors;
   setTagColors: any;
   coloring: typeof initialColoring;
   setColoring: any;
-  local: typeof initialLocal;
-  setLocal: any;
 }
 
 export const Tweaks = ({
@@ -47,13 +42,10 @@ export const Tweaks = ({
   setFilter,
   visuals,
   setVisuals,
-  tags,
   tagColors,
   setTagColors,
   coloring,
   setColoring,
-  local,
-  setLocal,
 }: TweakProps) => {
   const [showTweaks, setShowTweaks] = usePersistantState('showTweaks', false);
   const { highlightColor, setHighlightColor } = useContext(ThemeContext);
@@ -102,8 +94,7 @@ export const Tweaks = ({
               setVisuals(initialVisuals);
               setFilter(initialFilter);
               setColoring(initialColoring);
-              setHighlightColor('purple.500');
-              setLocal(initialLocal);
+              setHighlightColor('purple.500'); // TODO: Make customizable
             }}
             variant="subtle"
             size="sm"
@@ -144,10 +135,6 @@ export const Tweaks = ({
                 setFilter={setFilter}
                 tagColors={tagColors}
                 setTagColors={setTagColors}
-                highlightColor={highlightColor}
-                colorList={colorList}
-                tags={tags}
-                {...{ local, setLocal }}
               />
             </AccordionPanel>
           </AccordionItem>
