@@ -14,7 +14,6 @@ import {
 import React, { useContext } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
 import {
-  initialPhysics,
   initialFilter,
   initialVisuals,
   initialMouse,
@@ -29,13 +28,10 @@ import FilterPanel from './Filter/FilterPanel';
 
 import { ThemeContext } from '../../util/themecontext';
 import { usePersistantState } from '../../util/persistant-state';
-import { PhysicsPanel } from './Physics/PhysicsPanel';
 import { BehaviorPanel } from './Behavior/BehaviorPanel';
 import { VisualsPanel } from './Visual/VisualsPanel';
 
 export interface TweakProps {
-  physics: typeof initialPhysics;
-  setPhysics: any;
   filter: typeof initialFilter;
   setFilter: any;
   visuals: typeof initialVisuals;
@@ -54,8 +50,6 @@ export interface TweakProps {
 }
 
 export const Tweaks = ({
-  physics,
-  setPhysics,
   filter,
   setFilter,
   visuals,
@@ -119,7 +113,6 @@ export const Tweaks = ({
               setVisuals(initialVisuals);
               setFilter(initialFilter);
               setMouse(initialMouse);
-              setPhysics(initialPhysics);
               setBehavior(initialBehavior);
               setColoring(initialColoring);
               setHighlightColor('purple.500');
@@ -169,17 +162,6 @@ export const Tweaks = ({
                 tags={tags}
                 {...{ local, setLocal }}
               />
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem>
-            <AccordionButton display="flex" justifyContent="space-between">
-              <Box display="flex">
-                <AccordionIcon marginRight={2} />
-                <Heading size="sm">Physics</Heading>
-              </Box>
-            </AccordionButton>
-            <AccordionPanel>
-              <PhysicsPanel physics={physics} setPhysics={setPhysics} />
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem>
