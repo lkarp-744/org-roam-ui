@@ -16,8 +16,6 @@ import Scrollbars from 'react-custom-scrollbars-2';
 import {
   initialFilter,
   initialVisuals,
-  initialMouse,
-  initialBehavior,
   initialLocal,
   TagColors,
   colorList,
@@ -28,7 +26,6 @@ import FilterPanel from './Filter/FilterPanel';
 
 import { ThemeContext } from '../../util/themecontext';
 import { usePersistantState } from '../../util/persistant-state';
-import { BehaviorPanel } from './Behavior/BehaviorPanel';
 import { VisualsPanel } from './Visual/VisualsPanel';
 
 export interface TweakProps {
@@ -36,10 +33,6 @@ export interface TweakProps {
   setFilter: any;
   visuals: typeof initialVisuals;
   setVisuals: any;
-  mouse: typeof initialMouse;
-  setMouse: any;
-  behavior: typeof initialBehavior;
-  setBehavior: any;
   tags: string[];
   tagColors: TagColors;
   setTagColors: any;
@@ -54,10 +47,6 @@ export const Tweaks = ({
   setFilter,
   visuals,
   setVisuals,
-  mouse,
-  setMouse,
-  behavior,
-  setBehavior,
   tags,
   tagColors,
   setTagColors,
@@ -112,8 +101,6 @@ export const Tweaks = ({
             onClick={() => {
               setVisuals(initialVisuals);
               setFilter(initialFilter);
-              setMouse(initialMouse);
-              setBehavior(initialBehavior);
               setColoring(initialColoring);
               setHighlightColor('purple.500');
               setLocal(initialLocal);
@@ -179,20 +166,6 @@ export const Tweaks = ({
                   coloring,
                   setColoring,
                 }}
-              />
-            </AccordionPanel>
-          </AccordionItem>
-          <AccordionItem>
-            <AccordionButton>
-              <AccordionIcon marginRight={2} />
-              <Heading size="sm">Behavior</Heading>
-            </AccordionButton>
-            <AccordionPanel>
-              <BehaviorPanel
-                behavior={behavior}
-                setBehavior={setBehavior}
-                mouse={mouse}
-                setMouse={setMouse}
               />
             </AccordionPanel>
           </AccordionItem>
