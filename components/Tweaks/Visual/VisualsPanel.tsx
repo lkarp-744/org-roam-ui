@@ -23,7 +23,6 @@ export interface VisualsPanelProps {
   setVisuals: any;
   highlightColor: string;
   setHighlightColor: any;
-  threeDim: boolean;
   coloring: typeof initialColoring;
   setColoring: any;
 }
@@ -36,7 +35,6 @@ export const VisualsPanel = (props: VisualsPanelProps) => {
     setVisuals,
     highlightColor,
     setHighlightColor,
-    threeDim,
   } = props;
   const setVisualsCallback = useCallback((val: unknown) => setVisuals(val), []);
   return (
@@ -71,7 +69,6 @@ export const VisualsPanel = (props: VisualsPanelProps) => {
             <NodesNLinksPanel
               visuals={visuals}
               setVisuals={setVisualsCallback}
-              threeDim={threeDim}
             />
           </AccordionPanel>
         </AccordionItem>

@@ -2,7 +2,7 @@ import { GraphData, NodeObject } from 'force-graph';
 import { OrgRoamLink, OrgRoamNode } from '../../api';
 import { ThemeContext, ThemeContextProps } from '../../util/themecontext';
 
-import { ForceGraph2D, ForceGraph3D } from 'react-force-graph';
+import { ForceGraph2D } from 'react-force-graph';
 
 import { EmacsVariables, LinksByNodeId, NodeById, Scope } from '../../pages';
 import { Box, useTheme } from '@chakra-ui/react';
@@ -19,7 +19,6 @@ import React, {
 //@ts-expect-error there are no type definitions for jlouvain.js
 import jLouvain from 'jlouvain.js';
 
-import SpriteText from 'three-spritetext';
 import {
   algos,
   colorList,
@@ -49,7 +48,6 @@ export interface GraphProps {
   linksByNodeId: LinksByNodeId;
   graphData: GraphData;
   physics: typeof initialPhysics;
-  threeDim: boolean;
   filter: typeof initialFilter;
   emacsNodeId: string | null;
   visuals: typeof initialVisuals;
@@ -80,7 +78,6 @@ export default function ({
   graphRef,
   physics,
   graphData,
-  threeDim,
   linksByNodeId,
   filter,
   emacsNodeId,
@@ -291,10 +288,7 @@ export default function ({
       const community = jLouvain().nodes(filteredNodeIds).edges(weightedLinks);
       clusterRef.current = community();
     }
-    /* clusterRef.current = Object.fromEntries(
-     *   Object.entries(community()).sort(([, a], [, b]) => a - b),
-     * ) */
-    //console.log(clusterRef.current)
+
     return { nodes: filteredNodes, links: filteredLinks };
   }, [filter, graphData, coloring.method]);
 
@@ -400,11 +394,9 @@ export default function ({
       ) {
         fg.d3Force('x', d3.forceX().strength(physics.gravity));
         fg.d3Force('y', d3.forceY().strength(physics.gravity));
-        if (threeDim) fg.d3Force('z', d3.forceZ().strength(physics.gravity));
       } else {
         fg.d3Force('x', null);
         fg.d3Force('y', null);
-        if (threeDim) fg.d3Force('z', null);
       }
       if (physics.centering)
         fg.d3Force(
@@ -424,7 +416,7 @@ export default function ({
           : null
       );
     })();
-  }, [physics, threeDim, scope]);
+  }, [physics, scope]);
 
   // Normally the graph doesn't update when you just change the physics parameters
   // This forces the graph to make a small update when you do
@@ -704,19 +696,6 @@ export default function ({
         return handleClick('click', node, event);
       }, doubleClickTimeBuffer);
     },
-    /* onBackgroundClick: () => {
-     *   contextMenu.onClose()
-     *   setHoverNode(null)
-     *   if (scope.nodeIds.length === 0) {
-     *     return
-     *   }
-     *   if (mouse.backgroundExitsLocal) {
-     *     setScope((currentScope: Scope) => ({
-     *       ...currentScope,
-     *       nodeIds: [],
-     *     }))
-     *   }
-     * }, */
     onNodeHover: (node) => {
       if (!visuals.highlight) {
         return;
@@ -749,49 +728,20 @@ export default function ({
 
   return (
     <Box overflow="hidden" onClick={contextMenu.onClose}>
-      {threeDim ? (
-        <ForceGraph3D
-          ref={graphRef}
-          {...graphCommonProps}
-          nodeThreeObjectExtend={true}
-          nodeOpacity={visuals.nodeOpacity}
-          nodeResolution={visuals.nodeResolution}
-          linkOpacity={visuals.linkOpacity}
-          nodeThreeObject={(node: OrgRoamNode) => {
-            if (!visuals.labels) {
-              return;
-            }
-            if (visuals.labels < 3 && !highlightedNodes[node.id!]) {
-              return;
-            }
-            const sprite = new SpriteText(node.title.substring(0, 40));
-            sprite.color = getThemeColor(visuals.labelTextColor, theme);
-            sprite.backgroundColor = getThemeColor(
-              visuals.labelBackgroundColor,
-              theme
-            );
-            sprite.padding = 2;
-            sprite.textHeight = 8;
-
-            return sprite;
-          }}
-        />
-      ) : (
-        <ForceGraph2D
-          ref={graphRef}
-          {...graphCommonProps}
-          linkLineDash={(link) => {
-            const linkArg = link as OrgRoamLink;
-            if (visuals.citeDashes && linkArg.type?.includes('cite')) {
-              return [visuals.citeDashLength, visuals.citeGapLength];
-            }
-            if (visuals.refDashes && linkArg.type == 'ref') {
-              return [visuals.refDashLength, visuals.refGapLength];
-            }
-            return null;
-          }}
-        />
-      )}
+      <ForceGraph2D
+        ref={graphRef}
+        {...graphCommonProps}
+        linkLineDash={(link) => {
+          const linkArg = link as OrgRoamLink;
+          if (visuals.citeDashes && linkArg.type?.includes('cite')) {
+            return [visuals.citeDashLength, visuals.citeGapLength];
+          }
+          if (visuals.refDashes && linkArg.type == 'ref') {
+            return [visuals.refDashLength, visuals.refGapLength];
+          }
+          return null;
+        }}
+      />
     </Box>
   );
 }

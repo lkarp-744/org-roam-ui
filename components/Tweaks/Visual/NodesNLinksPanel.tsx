@@ -8,11 +8,12 @@ import { SliderWithInfo } from '../SliderWithInfo';
 export interface NodesNLinksPanelProps {
   visuals: typeof initialVisuals;
   setVisuals: any;
-  threeDim: boolean;
 }
 
-export const NodesNLinksPanel = (props: NodesNLinksPanelProps) => {
-  const { visuals, setVisuals, threeDim } = props;
+export const NodesNLinksPanel = ({
+  visuals,
+  setVisuals,
+}: NodesNLinksPanelProps) => {
   return (
     <VStack
       spacing={2}
@@ -47,43 +48,11 @@ export const NodesNLinksPanel = (props: NodesNLinksPanelProps) => {
             }))
           }
         />
-        {threeDim && (
-          <>
-            <SliderWithInfo
-              label="Node opacity"
-              value={visuals.nodeOpacity}
-              min={0}
-              max={1}
-              onChange={(value) =>
-                setVisuals({ ...visuals, nodeOpacity: value })
-              }
-            />
-            <SliderWithInfo
-              label="Node resolution"
-              value={visuals.nodeResolution}
-              min={5}
-              max={32}
-              step={1}
-              onChange={(value) =>
-                setVisuals({ ...visuals, nodeResolution: value })
-              }
-            />
-          </>
-        )}
         <SliderWithInfo
           label="Link width"
           value={visuals.linkWidth}
           onChange={(value) => setVisuals({ ...visuals, linkWidth: value })}
         />
-        {threeDim && (
-          <SliderWithInfo
-            label="Link opacity"
-            min={0}
-            max={1}
-            value={visuals.linkOpacity}
-            onChange={(value) => setVisuals({ ...visuals, linkOpacity: value })}
-          />
-        )}
         <EnableSection
           label="Link arrows"
           value={visuals.arrows}

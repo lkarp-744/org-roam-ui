@@ -6,7 +6,6 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  Button,
   IconButton,
   Tooltip,
   Heading,
@@ -37,8 +36,6 @@ import { VisualsPanel } from './Visual/VisualsPanel';
 export interface TweakProps {
   physics: typeof initialPhysics;
   setPhysics: any;
-  threeDim: boolean;
-  setThreeDim: (newValue: boolean) => void;
   filter: typeof initialFilter;
   setFilter: any;
   visuals: typeof initialVisuals;
@@ -59,8 +56,6 @@ export interface TweakProps {
 export const Tweaks = ({
   physics,
   setPhysics,
-  threeDim,
-  setThreeDim,
   filter,
   setFilter,
   visuals,
@@ -116,15 +111,6 @@ export const Tweaks = ({
         paddingRight={2}
         paddingTop={1}
       >
-        <Tooltip label={'Switch to ' + threeDim ? '2D' : '3D' + ' view'}>
-          <Button
-            onClick={() => setThreeDim(!threeDim)}
-            variant="subtle"
-            zIndex="overlay"
-          >
-            {threeDim ? '3D' : '2D'}
-          </Button>
-        </Tooltip>
         <Box display="flex" alignItems="center">
           <Tooltip label="Reset settings to defaults">
             <IconButton
@@ -209,7 +195,6 @@ export const Tweaks = ({
                 setVisuals={setVisuals}
                 highlightColor={highlightColor}
                 setHighlightColor={setHighlightColor}
-                threeDim={threeDim}
                 {...{
                   coloring,
                   setColoring,
