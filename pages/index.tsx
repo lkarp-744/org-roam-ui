@@ -98,7 +98,6 @@ type ContextPos = {
 };
 
 export function GraphPage() {
-  const [threeDim, setThreeDim] = usePersistantState('3d', false);
   const [tagColors, setTagColors] = usePersistantState<TagColors>(
     'tagCols',
     {}
@@ -600,8 +599,6 @@ export function GraphPage() {
           {...{
             physics,
             setPhysics,
-            threeDim,
-            setThreeDim,
             filter,
             setFilter,
             visuals,
@@ -629,7 +626,6 @@ export function GraphPage() {
               {...{
                 physics,
                 graphData,
-                threeDim,
                 emacsNodeId,
                 filter,
                 visuals,
