@@ -46,13 +46,12 @@ export const UniOrg = (props: UniOrgProps) => {
           return '(empty node)';
         }
         if (res !== 'error') {
-          console.log(res);
           setPreviewText(res);
         }
       })
       .catch((e) => {
         setPreviewText('(could not find node)');
-        console.log(e);
+        console.error(e);
         return 'Could not fetch the text for some reason, sorry!\n\n This can happen because you have an id with forward slashes (/) in it.';
       });
   }, [previewNode.id]);

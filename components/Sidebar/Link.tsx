@@ -11,23 +11,22 @@ import {
   useTheme,
 } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
-
 import { ProcessedOrg } from '../../util/processOrg';
-// import unified from 'unified'
-//import createStream from 'unified-stream'
-// import uniorgParse from 'uniorg-parse'
-// import uniorg2rehype from 'uniorg-rehype'
-//import highlight from 'rehype-highlight'
-// import katex from 'rehype-katex'
 import 'katex/dist/katex.css';
-// import rehype2react from 'rehype-react'
 import { ThemeContext } from '../../util/themecontext';
 import { LinksByNodeId, NodeByCite, NodeById } from '../../pages';
+import {
+  defaultNoteStyle,
+  viewerNoteStyle,
+  outlineNoteStyle,
+} from './noteStyle';
+import { Scrollbars } from 'react-custom-scrollbars-2';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { getThemeColor } from '../../util/getThemeColor';
 
 export interface LinkProps {
   href: any;
   children: any;
-  previewNode?: any;
   setPreviewNode: any;
   setSidebarHighlightedNode: any;
   nodeByCite: NodeByCite;
@@ -54,19 +53,11 @@ export interface NodeLinkProps {
   noUnderline?: boolean;
   id?: string;
 }
+
 export interface NormalLinkProps {
   href: string;
   children: string;
 }
-
-import {
-  defaultNoteStyle,
-  viewerNoteStyle,
-  outlineNoteStyle,
-} from './noteStyle';
-import { Scrollbars } from 'react-custom-scrollbars-2';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { getThemeColor } from '../../util/getThemeColor';
 
 export const NodeLink = (props: NodeLinkProps) => {
   const {
@@ -133,7 +124,6 @@ export const PreviewLink = (props: LinkProps) => {
     children,
     nodeById,
     setSidebarHighlightedNode,
-    previewNode,
     setPreviewNode,
     nodeByCite,
     openContextMenu,
@@ -152,7 +142,7 @@ export const PreviewLink = (props: LinkProps) => {
   const type = href.replaceAll(/(.*?):.*/g, '$1');
 
   const extraNoteStyle = outline ? outlineNoteStyle : viewerNoteStyle;
-  console.log(previewNode);
+
   const getText = () => {
     fetch(`http://localhost:35901/node/${id}`)
       .then((res) => {
@@ -165,7 +155,7 @@ export const PreviewLink = (props: LinkProps) => {
         }
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
         return 'Could not fetch the text for some reason, sorry!\n\n This can happen because you have an id with forward slashes (/) in it.';
       });
   };
