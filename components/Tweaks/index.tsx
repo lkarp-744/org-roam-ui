@@ -107,37 +107,35 @@ export const Tweaks = ({
       <Box
         display="flex"
         justifyContent="space-between"
-        alignItems="center"
+        alignItems="flex-end"
         paddingRight={2}
         paddingTop={1}
       >
-        <Box display="flex" alignItems="center">
-          <Tooltip label="Reset settings to defaults">
-            <IconButton
-              aria-label="Reset Defaults"
-              icon={<RepeatClockIcon />}
-              onClick={() => {
-                setVisuals(initialVisuals);
-                setFilter(initialFilter);
-                setMouse(initialMouse);
-                setPhysics(initialPhysics);
-                setBehavior(initialBehavior);
-                setColoring(initialColoring);
-                setHighlightColor('purple.500');
-                setLocal(initialLocal);
-              }}
-              variant="subtle"
-              size="sm"
-            />
-          </Tooltip>
+        <Tooltip label="Reset settings to defaults">
           <IconButton
-            size="sm"
-            icon={<CloseIcon />}
-            aria-label="Close Tweak Panel"
+            aria-label="Reset Defaults"
+            icon={<RepeatClockIcon />}
+            onClick={() => {
+              setVisuals(initialVisuals);
+              setFilter(initialFilter);
+              setMouse(initialMouse);
+              setPhysics(initialPhysics);
+              setBehavior(initialBehavior);
+              setColoring(initialColoring);
+              setHighlightColor('purple.500');
+              setLocal(initialLocal);
+            }}
             variant="subtle"
-            onClick={() => setShowTweaks(false)}
+            size="sm"
           />
-        </Box>
+        </Tooltip>
+        <IconButton
+          size="sm"
+          icon={<CloseIcon />}
+          aria-label="Close Tweak Panel"
+          variant="subtle"
+          onClick={() => setShowTweaks(false)}
+        />
       </Box>
       <Scrollbars
         autoHeight
