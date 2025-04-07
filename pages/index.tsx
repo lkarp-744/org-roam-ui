@@ -4,7 +4,6 @@ import {
   IconButton,
   Tooltip,
   useDisclosure,
-  useOutsideClick,
 } from '@chakra-ui/react';
 import { useWindowSize } from '@react-hook/window-size';
 import { GraphData, NodeObject } from 'force-graph';
@@ -39,23 +38,11 @@ import { ThemeContext } from '../util/themecontext';
 import { VariablesContext } from '../util/variablesContext';
 import { normalizeLinkEnds } from '../util/normalizeLinkEnds';
 
-// react-force-graph fails on import when server-rendered
-// https://github.com/vasturiano/react-force-graph/issues/155
-/*
-const ForceGraph2D = (
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  global.window ? require('react-force-graph').ForceGraph2D : null
-) as typeof TForceGraph2D;
-
-const ForceGraph3D = (
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  global.window ? require('react-force-graph').ForceGraph3D : null
-) as typeof TForceGraph3D;
-*/
 export type NodeById = { [nodeId: string]: OrgRoamNode | undefined };
 export type LinksByNodeId = { [nodeId: string]: OrgRoamLink[] | undefined };
 export type NodesByFile = { [file: string]: OrgRoamNode[] | undefined };
 export type NodeByCite = { [key: string]: OrgRoamNode | undefined };
+
 export interface EmacsVariables {
   roamDir?: string;
   dailyDir?: string;
@@ -64,6 +51,7 @@ export interface EmacsVariables {
   useInheritance?: boolean;
   subDirs: string[];
 }
+
 export type Scope = {
   nodeIds: string[];
   excludedNodeIds: string[];
@@ -517,7 +505,6 @@ export function GraphPage() {
 
   const [windowWidth, windowHeight] = useWindowSize();
 
-  const contextMenuRef = useRef<any>(null);
   const [contextMenuTarget, setContextMenuTarget] = useState<
     OrgRoamNode | string | null
   >(null);
@@ -530,12 +517,6 @@ export function GraphPage() {
   });
 
   const contextMenu = useDisclosure();
-  useOutsideClick({
-    ref: contextMenuRef,
-    handler: () => {
-      contextMenu.onClose();
-    },
-  });
 
   const openContextMenu = (
     target: OrgRoamNode | string,
@@ -651,12 +632,6 @@ export function GraphPage() {
         <Box position="relative" zIndex={4} width="100%">
           <Flex className="headerBar" h={10} flexDir="column">
             <Flex alignItems="center" h={10} justifyContent="flex-end">
-              {/* <Flex flexDir="row" alignItems="center">
-               *   <Box color="blue.500" bgColor="alt.100" h="100%" p={3} mr={4}>
-               *     {mainItem.icon}
-               *   </Box>
-               *   <Heading size="sm">{mainItem.title}</Heading>
-               * </Flex> */}
               <Flex height="100%" flexDirection="row">
                 {scope.nodeIds.length > 0 && (
                   <Tooltip label="Return to main graph">
@@ -720,23 +695,20 @@ export function GraphPage() {
           />
         </Box>
         {contextMenu.isOpen && (
-          <div ref={contextMenuRef}>
-            <ContextMenu
-              //contextMenuRef={contextMenuRef}
-              scope={scope}
-              target={contextMenuTarget}
-              background={false}
-              coordinates={contextPos}
-              handleLocal={handleLocal}
-              menuClose={contextMenu.onClose.bind(contextMenu)}
-              webSocket={WebSocketRef.current}
-              setPreviewNode={setPreviewNode}
-              setFilter={setFilter}
-              filter={filter}
-              setTagColors={setTagColors}
-              tagColors={tagColors}
-            />
-          </div>
+          <ContextMenu
+            scope={scope}
+            target={contextMenuTarget}
+            background={false}
+            coordinates={contextPos}
+            handleLocal={handleLocal}
+            menuClose={contextMenu.onClose.bind(contextMenu)}
+            webSocket={WebSocketRef.current}
+            setPreviewNode={setPreviewNode}
+            setFilter={setFilter}
+            filter={filter}
+            setTagColors={setTagColors}
+            tagColors={tagColors}
+          />
         )}
       </Box>
     </VariablesContext.Provider>
