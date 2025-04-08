@@ -9,17 +9,6 @@ export interface OrgImageProps {
 }
 
 export const OrgImage = ({ src, file }: OrgImageProps) => {
-  // const [image, setImage] = useState<any>(null)
-
-  /* )
-*   .then((res) => res.blob())
-*   .then((res) => setImage(res))
-*   .catch((e) => {
-*     setImage(null)
-*     console.error(e)
-*   })
-}, [fullPath]) */
-
   const dumbLoader = ({ src }: { [key: string]: string | number }) => {
     return `${src}`;
   };
@@ -44,13 +33,12 @@ export const OrgImage = ({ src, file }: OrgImageProps) => {
     path.isAbsolute(srcName) || srcName.slice(0, 1) === '~'
       ? srcName
       : path.join(dir, srcName);
-  const encodedPath = encodeURIComponent(encodeURIComponent(fullPath));
 
   return (
     <Container my={4} position="relative">
       <img
         alt="Wow, an image."
-        src={`http://localhost:35901/img/${encodedPath}`}
+        src={`http://localhost:35901/img/${encodeURIComponent(fullPath)}`}
       />
     </Container>
   );
