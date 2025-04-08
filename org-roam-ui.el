@@ -56,7 +56,6 @@
   (expand-file-name "./out/" org-roam-ui-root-dir)
   "Directory containing org-roam-ui's web build.")
 
-;; TODO: make into defcustom
 (defvar org-roam-ui-port
   35901
   "Port to serve the org-roam-ui interface.")
@@ -726,12 +725,6 @@ Optionally with ID (string), SPEED (number, ms) and PADDING (number, px)."
   (websocket-send-text org-roam-ui-ws-socket
                        (json-encode `((type . "theme")
                                       (data . ,(org-roam-ui--update-theme))))))
-
-;;; Obsolete commands
-(define-obsolete-function-alias #'orui-open #'org-roam-ui-open "0.1")
-(define-obsolete-function-alias #'orui-node-local #'org-roam-ui-node-local "0.1")
-(define-obsolete-function-alias #'orui-node-zoom #'org-roam-ui-node-zoom "0.1")
-(define-obsolete-function-alias #'orui-sync-theme #'org-roam-ui-sync-theme "0.1")
 
 ;;;###autoload
 (define-minor-mode org-roam-ui-follow-mode
