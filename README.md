@@ -208,12 +208,6 @@ Nice, but costly! If you like to have the graph more spread out, turning off col
 
 Fewer forces fewer worries
 
-# Integrations with other Org-mode packages
-
-## [md-roam](https://github.com/nobiot/md-roam)
-
-Use markdown notes interchangeably with Org-mode notes!
-
 # Contribute 💪
 
 The best way to support the continued development of org-roam-ui is to get involved yourself!
