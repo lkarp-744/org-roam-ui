@@ -6,7 +6,6 @@ import uniorgSlug from 'uniorg-slug';
 import extractKeywords from 'uniorg-extract-keywords';
 import attachments from 'uniorg-attach';
 import katex from 'rehype-katex';
-import 'katex/dist/katex.css';
 import rehype2react from 'rehype-react';
 
 import { PreviewLink } from '../components/Sidebar/Link';
