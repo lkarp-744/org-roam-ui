@@ -116,8 +116,6 @@ export const ProcessedOrg = (props: ProcessedOrgProps) => {
     .use(remarkMath)
     .use(remarkGFM)
     .use(remarkRehype);
-  //.data('settings', { fragment: true })
-  // .use(highlight)
 
   const isMarkdown = previewNode?.file?.slice(-3) === '.md';
   const baseProcessor: any = isMarkdown ? mdProcessor : orgProcessor;
@@ -132,7 +130,6 @@ export const ProcessedOrg = (props: ProcessedOrgProps) => {
             '\\eqref': '\\href{###1}{(\\text{#1})}',
             '\\ref': '\\href{###1}{\\text{#1}}',
             '\\label': '\\htmlId{#1}{}',
-            // '\\weird': '\\textbf{#1}',
             ...macros,
           },
         })
