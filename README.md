@@ -3,6 +3,7 @@
 <img width="1440" alt="Screenshot 2021-10-12 at 12 51 39" src="https://user-images.githubusercontent.com/21983833/136942774-3f293f65-dbd4-4479-b530-1fde738c5289.png">
 
 Org-Roam-UI is a frontend for exploring and interacting with your [org-roam](https://github.com/org-roam/org-roam) notes.
+Org-roam-ui's main feature is the ability to generate a graph visualization of your org-roam notes.
 
 ## Installation
 
@@ -49,25 +50,6 @@ Then something along the following to your `config.el`
 ```
 
 We recommend only loading org-roam-ui after loading org(-roam) as starting the server and making database requests can impact startup times quite a lot.
-
-### straight/use-package
-
-```emacs-lisp
-(use-package org-roam-ui
-  :straight
-    (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
-    :after org-roam
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
-
-```
 
 ## Usage
 
@@ -146,7 +128,7 @@ Org-Roam-UI can sync your Emacs theme! This is the default behavior, to disable 
 (setq org-roam-ui-sync-theme nil)
 ```
 
-Then call `M-x orui-sync-theme`.
+Then call `M-x org-roam-ui-sync-theme`.
 
 You can also provide your own theme if you do not like syncing nor like the default one. To do so, set `org-roam-ui-custom-theme` to an alist of (rather specific) variables, like so
 
@@ -225,27 +207,6 @@ Nice, but costly! If you like to have the graph more spread out, turning off col
 #### Turn off gravity
 
 Fewer forces fewer worries
-
-#### Favor 2D over 3D
-
-I know, it looks cool, but man is it slow.
-
-#### Don't drag the dang thing around so much!
-
-In our experience, once the graph has actually settled and nothing needs to be rendered again, looking around should pose little trouble. At the moment there is no way of "saving" the graph configuration, but we are exploring the possibility. The graph layout algorithm is deterministic however, so barring any changes to the data it should produce the same results each time.
-
-### Q: Will you implement X?
-
-Hopefully, yeah! But time is limited, and so is the amount of features we can cram into this things before it implodes in itself, so we are adding things incrementally to make sure they work. That said, we'd love to hear from you!
-If your feature is not already on the [project board](https://github.com/org-roam/org-roam-ui/projects/2), please post minor feature requests such as "I want to be able to color this specific node" in [the minor feature requests discussion](https://github.com/org-roam/org-roam-ui/discussions/6) and _major_ feature requests (e.g. "I want to publish my graph) in [the major feature requests discussion](https://github.com/org-roam/org-roam-ui/discussions/66) or upvote those already posted, this way we can adjust our priorities somewhat!
-
-## Features ✨
-
-Org-roam-ui's main feature is the ability to generate a graph visualization of your org-roam notes.
-
-### Cool graph
-
-![image](https://user-images.githubusercontent.com/21983833/127747037-aac46e8a-8617-4436-8887-ea1ad7a3141a.png)
 
 # Integrations with other Org-mode packages
 
