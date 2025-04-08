@@ -11,3 +11,5 @@ jobs:
           node-version: '22.x'
           cache: 'npm'
       - run: npm ci --cache .npm
+      - run: npm run lint:all
+      - run: npm run build
