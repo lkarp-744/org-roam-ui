@@ -1,5 +1,4 @@
 import '../styles/globals.css';
-import type { AppProps } from 'next/app';
 import {
   ChakraProvider,
   extendTheme,
@@ -15,6 +14,7 @@ import {
   initialTheme,
   initialHighlightColor,
 } from '../util/themecontext';
+import Home from '../components/Home';
 
 const getBorderColor = (
   highlightColor: string,
@@ -165,7 +165,7 @@ const constructTheme = (highlightColor: string, emacsTheme: Theme) => {
   };
 };
 
-function App({ Component, pageProps }: AppProps) {
+function App() {
   const [emacsTheme, setEmacsTheme] = useState<Theme>(initialTheme);
   const [highlightColor, setHighlightColor] = useState(initialHighlightColor);
 
@@ -188,7 +188,7 @@ function App({ Component, pageProps }: AppProps) {
       }}
     >
       <ChakraProvider theme={extendedTheme}>
-        <Component {...pageProps} />
+        <Home />
       </ChakraProvider>
     </ThemeContext.Provider>
   );

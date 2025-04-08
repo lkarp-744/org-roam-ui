@@ -1,7 +1,7 @@
 import { OrgRoamNode } from '../../api';
 import { NodeObject } from 'force-graph';
 import { initialVisuals } from '../config';
-import { LinksByNodeId } from '../../pages';
+import { LinksByNodeId } from '../Home';
 import wrap from 'word-wrap';
 import { nodeSize } from '../../util/nodeSize';
 import { hexToRGBA } from '../../util/hexToRGBA';

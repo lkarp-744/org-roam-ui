@@ -14,7 +14,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ProcessedOrg } from '../../util/processOrg';
 import 'katex/dist/katex.css';
 import { ThemeContext } from '../../util/themecontext';
-import { LinksByNodeId, NodeByCite, NodeById } from '../../pages';
+import { LinksByNodeId, NodeByCite, NodeById } from '../Home';
 import {
   defaultNoteStyle,
   viewerNoteStyle,

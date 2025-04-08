@@ -12,7 +12,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 
 import { NodeObject } from 'force-graph';
 import { OrgRoamNode } from '../../api';
-import { LinksByNodeId, NodeByCite, NodeById, Scope } from '../../pages/index';
+import { LinksByNodeId, NodeByCite, NodeById, Scope } from '../Home';
 import { Resizable } from 're-resizable';
 import { usePersistantState } from '../../util/persistant-state';
 import { initialFilter, TagColors } from '../config';

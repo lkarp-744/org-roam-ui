@@ -1,6 +1,6 @@
 import { OrgRoamNode } from '../api';
 import { initialColoring, initialVisuals } from '../components/config';
-import { LinksByNodeId } from '../pages';
+import { LinksByNodeId } from '../components/Home';
 import { getNodeColorById } from './getNodeColorById';
 import { getThemeColor } from './getThemeColor';
 

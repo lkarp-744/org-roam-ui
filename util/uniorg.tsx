@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { LinksByNodeId, NodeByCite, NodeById } from '../pages/index';
+import { LinksByNodeId, NodeByCite, NodeById } from '../components/Home';
 import { ProcessedOrg } from './processOrg';
 
 export interface UniOrgProps {

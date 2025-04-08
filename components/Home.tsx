@@ -11,7 +11,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 // NOTE: react-force-graph fails on import when server-rendered
 // (https://github.com/vasturiano/react-force-graph/issues/155)
-const Graph = dynamic(() => import('../components/Graph/Graph'), {
+const Graph = dynamic(() => import('./Graph/Graph'), {
   ssr: false,
 });
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -29,10 +29,10 @@ import {
   initialPhysics,
   initialVisuals,
   TagColors,
-} from '../components/config';
-import { ContextMenu } from '../components/contextmenu';
-import Sidebar from '../components/Sidebar';
-import { Tweaks } from '../components/Tweaks';
+} from './config';
+import { ContextMenu } from './contextmenu';
+import Sidebar from './Sidebar';
+import { Tweaks } from './Tweaks';
 import { usePersistantState } from '../util/persistant-state';
 import { ThemeContext } from '../util/themecontext';
 import { VariablesContext } from '../util/variablesContext';
@@ -84,7 +84,7 @@ type ContextPos = {
   bottom: number | undefined;
 };
 
-export function GraphPage() {
+function GraphPage() {
   const [tagColors, setTagColors] = usePersistantState<TagColors>(
     'tagCols',
     {}

@@ -1,6 +1,6 @@
 import { filter } from '@chakra-ui/react';
 import { initialVisuals } from '../components/config';
-import { LinksByNodeId } from '../pages';
+import { LinksByNodeId } from '../components/Home';
 import { NodeObject } from 'force-graph';
 
 export const nodeSize = ({
