@@ -311,7 +311,7 @@ TODO: Be able to delete individual nodes."
   (setq org-roam-directory org-roam-ui--roam-directory)
   (progn
     (httpd-send-file t (org-link-decode file))
-    (httpd-send-header t "text/plain" 200 :Access-Control-Allow-Origin "*")))
+    (httpd-send-header t "image/*" 200 :Access-Control-Allow-Origin "*")))
 
 (defun org-roam-ui--on-save ()
   "Send graphdata on saving an org-roam buffer.
