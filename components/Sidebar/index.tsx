@@ -45,33 +45,31 @@ export interface SidebarProps {
   useInheritance: boolean;
 }
 
-const Sidebar = (props: SidebarProps) => {
-  const {
-    isOpen,
-    onOpen,
-    onClose,
-    previewNode,
-    setPreviewNode,
-    nodeById,
-    linksByNodeId,
-    nodeByCite,
-    setSidebarHighlightedNode,
-    canUndo,
-    canRedo,
-    resetPreviewNode,
-    previousPreviewNode,
-    nextPreviewNode,
-    openContextMenu,
-    windowWidth,
-    filter,
-    setFilter,
-    tagColors,
-    setTagColors,
-    macros,
-    attachDir,
-    useInheritance,
-  } = props;
-
+const Sidebar = ({
+  isOpen,
+  onOpen,
+  onClose,
+  previewNode,
+  setPreviewNode,
+  nodeById,
+  linksByNodeId,
+  nodeByCite,
+  setSidebarHighlightedNode,
+  canUndo,
+  canRedo,
+  resetPreviewNode,
+  previousPreviewNode,
+  nextPreviewNode,
+  openContextMenu,
+  windowWidth,
+  filter,
+  setFilter,
+  tagColors,
+  setTagColors,
+  macros,
+  attachDir,
+  useInheritance,
+}: SidebarProps) => {
   const [previewRoamNode, setPreviewRoamNode] = useState<
     OrgRoamNode | undefined
   >();

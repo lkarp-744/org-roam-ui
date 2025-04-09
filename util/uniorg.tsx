@@ -17,22 +17,20 @@ export interface UniOrgProps {
   useInheritance: boolean;
 }
 
-export const UniOrg = (props: UniOrgProps) => {
-  const {
-    openContextMenu,
-    setSidebarHighlightedNode,
-    nodeById,
-    nodeByCite,
-    previewNode,
-    setPreviewNode,
-    outline,
-    collapse,
-    linksByNodeId,
-    macros,
-    attachDir,
-    useInheritance,
-  } = props;
-
+export const UniOrg = ({
+  openContextMenu,
+  setSidebarHighlightedNode,
+  nodeById,
+  nodeByCite,
+  previewNode,
+  setPreviewNode,
+  outline,
+  collapse,
+  linksByNodeId,
+  macros,
+  attachDir,
+  useInheritance,
+}: UniOrgProps) => {
   const [previewText, setPreviewText] = useState('');
 
   const id = encodeURIComponent(encodeURIComponent(previewNode.id));

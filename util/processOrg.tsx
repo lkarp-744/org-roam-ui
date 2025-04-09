@@ -36,23 +36,21 @@ export interface ProcessedOrgProps {
   useInheritance: boolean;
 }
 
-export const ProcessedOrg = (props: ProcessedOrgProps) => {
-  const {
-    nodeById,
-    setSidebarHighlightedNode,
-    setPreviewNode,
-    previewText,
-    nodeByCite,
-    previewNode,
-    openContextMenu,
-    outline,
-    collapse,
-    linksByNodeId,
-    macros,
-    attachDir,
-    useInheritance,
-  } = props;
-
+export const ProcessedOrg = ({
+  nodeById,
+  setSidebarHighlightedNode,
+  setPreviewNode,
+  previewText,
+  nodeByCite,
+  previewNode,
+  openContextMenu,
+  outline,
+  collapse,
+  linksByNodeId,
+  macros,
+  attachDir,
+  useInheritance,
+}: ProcessedOrgProps) => {
   if (!previewNode) return null;
   if (!linksByNodeId) return null;
 
