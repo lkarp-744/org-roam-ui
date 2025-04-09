@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import path from 'path';
 import { Container } from '@chakra-ui/react';
 
@@ -9,36 +8,31 @@ export interface OrgImageProps {
 }
 
 export const OrgImage = ({ src, file }: OrgImageProps) => {
-  const dumbLoader = ({ src }: { [key: string]: string | number }) => {
-    return `${src}`;
-  };
+  if (!src.startsWith('http:') && !src.startsWith('https:')) {
+    if (src.startsWith('file:')) {
+      src = src.replace('file:', '');
+    }
+    const isAbsolute = src.startsWith('/');
 
-  if (src.replaceAll(/(http)?.*/g, '$1')) {
-    console.log(src.replaceAll(/(http)?.*/g, '$1'));
-    return (
-      <Image
-        layout="responsive"
-        loader={dumbLoader}
-        src={src}
-        alt=""
-        style={{ width: 'auto', height: 'auto' }}
-      />
-    );
+    if (src.startsWith('./')) {
+      // relative source
+      src = src.replace('./', '');
+    }
+
+    if (!isAbsolute) {
+      const dir = path.dirname(file);
+      src = path.join(dir, src);
+    }
+
+    src = `http://localhost:35901/img/${encodeURIComponent(src)}`;
   }
-
-  const srcName = src.replaceAll(/file:/g, '');
-
-  const dir = path.dirname(file);
-  const fullPath =
-    path.isAbsolute(srcName) || srcName.slice(0, 1) === '~'
-      ? srcName
-      : path.join(dir, srcName);
 
   return (
     <Container my={4} position="relative">
       <img
-        alt="Wow, an image."
-        src={`http://localhost:35901/img/${encodeURIComponent(fullPath)}`}
+        alt="Failed to load image!"
+        src={src}
+        style={{ width: 'auto', height: 'auto' }}
       />
     </Container>
   );
