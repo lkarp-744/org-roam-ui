@@ -76,7 +76,6 @@ export const OptionPanel = (props: OptionPanelProps) => {
       }}
       tagStyleProps={{
         justifyContent: 'flex-start',
-        //variant: 'subtle',
         fontSize: 10,
         borderColor: highlightColor,
         borderWidth: 1,
@@ -85,8 +84,6 @@ export const OptionPanel = (props: OptionPanelProps) => {
         bg: '',
         height: 4,
         mb: 2,
-        //paddingLeft: 4,
-        //fontWeight: 'bold',
       }}
       hideToggleButton
       itemRenderer={(selected) => selected.label}

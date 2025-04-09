@@ -12,10 +12,9 @@ import React, { useCallback } from 'react';
 import { HighlightingPanel } from './HighlightingPanel';
 import { ColorsPanel } from './ColorsPanel';
 import { initialColoring, initialVisuals } from '../../config';
-import { NodesNLinksPanel } from './NodesNLinksPanel';
 import { LabelsPanel } from './LabelsPanel';
 import { ThemeSelect } from './ThemeSelect';
-import { CitationsPanel } from '../NodesNLinks/CitationsPanel';
+import { CitationsPanel } from '../CitationsPanel';
 import { GraphColorSelect } from './GraphColorSelect';
 
 export interface VisualsPanelProps {
@@ -27,20 +26,22 @@ export interface VisualsPanelProps {
   setColoring: any;
 }
 
-export const VisualsPanel = (props: VisualsPanelProps) => {
-  const {
-    coloring,
-    setColoring,
-    visuals,
-    setVisuals,
-    highlightColor,
-    setHighlightColor,
-  } = props;
+export const VisualsPanel = ({
+  coloring,
+  setColoring,
+  visuals,
+  setVisuals,
+  highlightColor,
+  setHighlightColor,
+}: VisualsPanelProps) => {
   const setVisualsCallback = useCallback((val: unknown) => setVisuals(val), []);
+
   return (
     <VStack justifyContent="flex-start" align="stretch">
       <ThemeSelect />
       <GraphColorSelect {...{ coloring, setColoring }} />
+      <LabelsPanel visuals={visuals} setVisuals={setVisualsCallback} />
+      <HighlightingPanel visuals={visuals} setVisuals={setVisualsCallback} />
       <Accordion allowToggle defaultIndex={[0]} paddingLeft={3}>
         <AccordionItem>
           <AccordionButton>
@@ -55,45 +56,6 @@ export const VisualsPanel = (props: VisualsPanelProps) => {
               setVisualsCallback={setVisualsCallback}
               highlightColor={highlightColor}
               setHighlightColor={setHighlightColor}
-            />
-          </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>
-            <Flex justifyContent="space-between" w="100%">
-              <Text>Nodes & Links</Text>
-              <AccordionIcon marginRight={2} />
-            </Flex>
-          </AccordionButton>
-          <AccordionPanel>
-            <NodesNLinksPanel
-              visuals={visuals}
-              setVisuals={setVisualsCallback}
-            />
-          </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>
-            <Flex justifyContent="space-between" w="100%">
-              <Text>Labels</Text>
-              <AccordionIcon marginRight={2} />
-            </Flex>
-          </AccordionButton>
-          <AccordionPanel>
-            <LabelsPanel visuals={visuals} setVisuals={setVisualsCallback} />
-          </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>
-            <Flex justifyContent="space-between" w="100%">
-              <Text>Highlighting</Text>
-              <AccordionIcon marginRight={2} />
-            </Flex>
-          </AccordionButton>
-          <AccordionPanel>
-            <HighlightingPanel
-              visuals={visuals}
-              setVisuals={setVisualsCallback}
             />
           </AccordionPanel>
         </AccordionItem>
