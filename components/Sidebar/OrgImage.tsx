@@ -1,11 +1,24 @@
 import React from 'react';
-import path from 'path';
 import { Container } from '@chakra-ui/react';
 
 export interface OrgImageProps {
   src: string;
   file: string;
 }
+
+const join = (dir: string, name: string) => {
+  return `${dir}/${name}`;
+};
+
+const dirname = (path: string) => {
+  const lastSeparatorIndex = path.lastIndexOf('/');
+
+  if (lastSeparatorIndex === -1) {
+    throw new Error(`Not a directory: ${path}`);
+  }
+
+  return path.substring(0, lastSeparatorIndex);
+};
 
 export const OrgImage = ({ src, file }: OrgImageProps) => {
   if (!src.startsWith('http:') && !src.startsWith('https:')) {
@@ -20,8 +33,8 @@ export const OrgImage = ({ src, file }: OrgImageProps) => {
     }
 
     if (!isAbsolute) {
-      const dir = path.dirname(file);
-      src = path.join(dir, src);
+      const dir = dirname(file);
+      src = join(dir, src);
     }
 
     src = `http://localhost:35901/img/${encodeURIComponent(src)}`;
