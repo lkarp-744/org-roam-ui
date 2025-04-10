@@ -26,7 +26,10 @@ stability. To make sure nothing breaks, use the latest version of `org-roam` by 
 
 ```emacs-lisp
 (unpin! org-roam)
-(package! org-roam-ui)
+(package! org-roam-ui :recipe
+  (:host github
+   :repo "lkarp-744/org-roam-ui"
+   :files ("*.el" "public")))
 ```
 
 Then something along the following to your `config.el`
