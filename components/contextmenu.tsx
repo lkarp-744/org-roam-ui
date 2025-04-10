@@ -53,20 +53,19 @@ export default interface ContextMenuProps {
   filter: typeof initialFilter;
 }
 
-export const ContextMenu = (props: ContextMenuProps) => {
-  const {
-    target,
-    coordinates,
-    handleLocal,
-    menuClose,
-    scope,
-    webSocket,
-    setPreviewNode,
-    setTagColors,
-    tagColors,
-    setFilter,
-    filter,
-  } = props;
+export const ContextMenu = ({
+  target,
+  coordinates,
+  handleLocal,
+  menuClose,
+  scope,
+  webSocket,
+  setPreviewNode,
+  setTagColors,
+  tagColors,
+  setFilter,
+  filter,
+}: ContextMenuProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -75,7 +74,6 @@ export const ContextMenu = (props: ContextMenuProps) => {
           zIndex="overlay"
           bgColor="white"
           color="black"
-          //borderColor="gray.500"
           position="absolute"
           left={coordinates.left}
           top={coordinates.top}
@@ -144,36 +142,6 @@ export const ContextMenu = (props: ContextMenuProps) => {
                   Open local graph
                 </MenuItem>
               )}
-              {/* Doesn't work at the moment
-                            <MenuItem closeOnSelect={false} closeOnBlur={false}>
-                            <Box _hover={{ bg: 'gray.200' }} width="100%">
-                                <Popover
-                                    initialFocusRef={copyRef}
-                                    trigger="hover"
-                                    placement="right-start"
-                                    gutter={0}
-                                >
-                                    <PopoverTrigger>
-                                        <MenuItem closeOnSelect={false} icon={<CopyIcon />}>
-                                            <Flex justifyContent="space-between" alignItems="center">
-                                                Copy...
-                                                <ChevronRightIcon />
-                                            </Flex>
-                                        </MenuItem>
-                                    </PopoverTrigger>
-                                    <PopoverContent width={100}>
-                                        <Menu defaultIsOpen closeOnBlur={false} closeOnSelect={false}>
-                                            <MenuList bg="alt.100" zIndex="popover">
-                                                <MenuItem ref={copyRef}>ID</MenuItem>
-                                                <MenuItem>Title</MenuItem>
-                                                <MenuItem>File path</MenuItem>
-                                            </MenuList>
-                                        </Menu>
-                                    </PopoverContent>
-                                </Popover>
-                            </Box>
-                        </MenuItem> */}
-
               <MenuItem
                 icon={<ViewIcon />}
                 onClick={() => {
@@ -250,30 +218,3 @@ export const ContextMenu = (props: ContextMenuProps) => {
     </>
   );
 };
-
-/* <Box>
- *     <Popover>
- *         <PopoverTrigger>
- *                 Permenantly delete node
- *             </MenuItem>
- *         </PopoverTrigger>
- *         <PopoverContent borderColor="red.500" _focus={{}}>
- *             <PopoverHeader fontWeight="semibold">Delete Node?</PopoverHeader>
- *             <PopoverArrow />
- *             <PopoverCloseButton onClick={onClose} />
- *             <PopoverBody>
- *                 This will permanently delete your node! Are you sure you want to do this?
- *             </PopoverBody>
- *             <PopoverFooter>
- *                 <Flex justifyContent="space-between" py={1}>
- *                     <Button colorScheme="gray" bg="gray.800" color="alt.100" width={30} onClick={onClose}>
- *                         Nah
- *                     </Button>
- *                     <Button colorScheme="red" variant="link" onClick={onClose}>
- *                         Delete node
- *                     </Button>
- *                 </Flex>
- *             </PopoverFooter>
- *         </PopoverContent>
- *     </Popover>
- * </Box> */

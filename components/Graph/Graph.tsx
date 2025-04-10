@@ -4,7 +4,7 @@ import { ThemeContext, ThemeContextProps } from '../../util/themecontext';
 
 import { ForceGraph2D } from 'react-force-graph';
 
-import { EmacsVariables, LinksByNodeId, NodeById, Scope } from '../../pages';
+import { EmacsVariables, LinksByNodeId, NodeById, Scope } from '../Home';
 import { Box, useTheme } from '@chakra-ui/react';
 import { useAnimation } from '../../util/hooks';
 import * as d3int from 'd3-interpolate';

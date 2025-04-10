@@ -14,7 +14,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ProcessedOrg } from '../../util/processOrg';
 import 'katex/dist/katex.css';
 import { ThemeContext } from '../../util/themecontext';
-import { LinksByNodeId, NodeByCite, NodeById } from '../../pages';
+import { LinksByNodeId, NodeByCite, NodeById } from '../Home';
 import {
   defaultNoteStyle,
   viewerNoteStyle,
@@ -118,23 +118,22 @@ export const NormalLink = (props: NormalLinkProps) => {
   );
 };
 
-export const PreviewLink = (props: LinkProps) => {
-  const {
-    href,
-    children,
-    nodeById,
-    setSidebarHighlightedNode,
-    setPreviewNode,
-    nodeByCite,
-    openContextMenu,
-    outline,
-    noUnderline,
-    linksByNodeId,
-    isWiki,
-    macros,
-    attachDir,
-    useInheritance,
-  } = props;
+export const PreviewLink = ({
+  href,
+  children,
+  nodeById,
+  setSidebarHighlightedNode,
+  setPreviewNode,
+  nodeByCite,
+  openContextMenu,
+  outline,
+  noUnderline,
+  linksByNodeId,
+  isWiki,
+  macros,
+  attachDir,
+  useInheritance,
+}: LinkProps) => {
   // TODO figure out how to properly type this
   // see https://github.com/rehypejs/rehype-react/issues/25
   const [orgText, setOrgText] = useState<any>(null);

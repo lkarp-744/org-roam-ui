@@ -1,5 +1,5 @@
 import { initialColoring, initialVisuals } from '../components/config';
-import { LinksByNodeId } from '../pages';
+import { LinksByNodeId } from '../components/Home';
 import { getLinkNodeColor } from './getLinkNodeColor';
 import { getThemeColor } from './getThemeColor';
 

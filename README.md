@@ -26,7 +26,10 @@ stability. To make sure nothing breaks, use the latest version of `org-roam` by 
 
 ```emacs-lisp
 (unpin! org-roam)
-(package! org-roam-ui)
+(package! org-roam-ui :recipe
+  (:host github
+   :repo "lkarp-744/org-roam-ui"
+   :files ("*.el" "public")))
 ```
 
 Then something along the following to your `config.el`
@@ -207,12 +210,6 @@ Nice, but costly! If you like to have the graph more spread out, turning off col
 #### Turn off gravity
 
 Fewer forces fewer worries
-
-# Integrations with other Org-mode packages
-
-## [md-roam](https://github.com/nobiot/md-roam)
-
-Use markdown notes interchangeably with Org-mode notes!
 
 # Contribute 💪
 

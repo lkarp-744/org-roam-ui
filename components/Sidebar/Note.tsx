@@ -1,7 +1,7 @@
 import React from 'react';
 import { NodeObject } from 'force-graph';
 
-import { NodeById, NodeByCite, LinksByNodeId } from '../../pages';
+import { NodeById, NodeByCite, LinksByNodeId } from '../Home';
 import { Box, Flex } from '@chakra-ui/react';
 import { UniOrg } from '../../util/uniorg';
 import { Backlinks } from '../../components/Sidebar/Backlinks';

@@ -12,7 +12,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 
 import { NodeObject } from 'force-graph';
 import { OrgRoamNode } from '../../api';
-import { LinksByNodeId, NodeByCite, NodeById, Scope } from '../../pages/index';
+import { LinksByNodeId, NodeByCite, NodeById, Scope } from '../Home';
 import { Resizable } from 're-resizable';
 import { usePersistantState } from '../../util/persistant-state';
 import { initialFilter, TagColors } from '../config';
@@ -45,33 +45,31 @@ export interface SidebarProps {
   useInheritance: boolean;
 }
 
-const Sidebar = (props: SidebarProps) => {
-  const {
-    isOpen,
-    onOpen,
-    onClose,
-    previewNode,
-    setPreviewNode,
-    nodeById,
-    linksByNodeId,
-    nodeByCite,
-    setSidebarHighlightedNode,
-    canUndo,
-    canRedo,
-    resetPreviewNode,
-    previousPreviewNode,
-    nextPreviewNode,
-    openContextMenu,
-    windowWidth,
-    filter,
-    setFilter,
-    tagColors,
-    setTagColors,
-    macros,
-    attachDir,
-    useInheritance,
-  } = props;
-
+const Sidebar = ({
+  isOpen,
+  onOpen,
+  onClose,
+  previewNode,
+  setPreviewNode,
+  nodeById,
+  linksByNodeId,
+  nodeByCite,
+  setSidebarHighlightedNode,
+  canUndo,
+  canRedo,
+  resetPreviewNode,
+  previousPreviewNode,
+  nextPreviewNode,
+  openContextMenu,
+  windowWidth,
+  filter,
+  setFilter,
+  tagColors,
+  setTagColors,
+  macros,
+  attachDir,
+  useInheritance,
+}: SidebarProps) => {
   const [previewRoamNode, setPreviewRoamNode] = useState<
     OrgRoamNode | undefined
   >();
