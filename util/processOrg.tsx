@@ -4,10 +4,8 @@ import uniorgParse from 'uniorg-parse';
 import uniorg2rehype from 'uniorg-rehype';
 import uniorgSlug from 'uniorg-slug';
 import extractKeywords from 'uniorg-extract-keywords';
-import attachments from 'uniorg-attach';
 import katex from 'rehype-katex';
 import rehype2react from 'rehype-react';
-
 import { PreviewLink } from '../components/Sidebar/Link';
 import { LinksByNodeId, NodeByCite, NodeById } from '../components/Home';
 import React, { ReactNode, useMemo } from 'react';
@@ -57,10 +55,6 @@ export const ProcessedOrg = ({
   const orgProcessor: any = unified()
     .use(uniorgParse)
     .use(extractKeywords)
-    .use(attachments, {
-      idDir: attachDir || undefined,
-      useInheritance,
-    })
     .use(uniorgSlug)
     .use(uniorg2rehype, { useSections: true });
 
