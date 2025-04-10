@@ -7,13 +7,7 @@ import {
 } from '@chakra-ui/react';
 import { useWindowSize } from '@react-hook/window-size';
 import { GraphData, NodeObject } from 'force-graph';
-import Head from 'next/head';
-import dynamic from 'next/dynamic';
-// NOTE: react-force-graph fails on import when server-rendered
-// (https://github.com/vasturiano/react-force-graph/issues/155)
-const Graph = dynamic(() => import('./Graph/Graph'), {
-  ssr: false,
-});
+import Graph from './Graph/Graph';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { BiNetworkChart } from 'react-icons/bi';
 import { BsReverseLayoutSidebarInsetReverse } from 'react-icons/bs';
@@ -67,14 +61,8 @@ export default function Home() {
   if (!showPage) {
     return null;
   }
-  return (
-    <>
-      <Head>
-        <title>ORUI</title>
-      </Head>
-      <GraphPage />
-    </>
-  );
+
+  return <GraphPage />;
 }
 
 type ContextPos = {

@@ -53,7 +53,7 @@
   "Root directory of the org-roam-ui project.")
 
 (defvar org-roam-ui-app-build-dir
-  (expand-file-name "./out/" org-roam-ui-root-dir)
+  (expand-file-name "./public/" org-roam-ui-root-dir)
   "Directory containing org-roam-ui's web build.")
 
 (defvar org-roam-ui-port
