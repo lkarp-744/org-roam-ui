@@ -53,20 +53,19 @@ export default interface ContextMenuProps {
   filter: typeof initialFilter;
 }
 
-export const ContextMenu = (props: ContextMenuProps) => {
-  const {
-    target,
-    coordinates,
-    handleLocal,
-    menuClose,
-    scope,
-    webSocket,
-    setPreviewNode,
-    setTagColors,
-    tagColors,
-    setFilter,
-    filter,
-  } = props;
+export const ContextMenu = ({
+  target,
+  coordinates,
+  handleLocal,
+  menuClose,
+  scope,
+  webSocket,
+  setPreviewNode,
+  setTagColors,
+  tagColors,
+  setFilter,
+  filter,
+}: ContextMenuProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
