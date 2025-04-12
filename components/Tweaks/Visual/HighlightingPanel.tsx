@@ -20,7 +20,12 @@ export const HighlightingPanel = ({
     pl={7}
     pr={2}
   >
-    <Box display="flex" justifyContent="space-between" paddingBottom={2}>
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      paddingBottom={2}
+      paddingRight={4}
+    >
       <Text>Highlighting</Text>
       <Switch
         isChecked={visuals.highlight}
