@@ -26,11 +26,7 @@ export const getLinkColor = ({
   coloring: typeof initialColoring;
   cluster: any;
 }) => {
-  if (
-    !visuals.highlight &&
-    !visuals.linkColorScheme &&
-    !needsHighlighting
-  ) {
+  if (!visuals.highlight && !visuals.linkColorScheme && !needsHighlighting) {
     const nodeColor = getLinkNodeColor({
       sourceId,
       targetId,
