@@ -622,9 +622,9 @@ export default function ({
 
       if (visuals.refLinkColor && roamLink.type === 'ref') {
         return needsHighlighting &&
-          (visuals.refLinkHighlightColor || visuals.linkHighlight)
+          (visuals.refLinkHighlightColor || visuals.highlight)
           ? highlightColors[visuals.refLinkColor][
-              visuals.refLinkHighlightColor || visuals.linkHighlight
+              visuals.refLinkHighlightColor || visuals.highlightColor
             ](opacity)
           : highlightColors[visuals.refLinkColor][visuals.backgroundColor](
               visuals.highlightFade * opacity
@@ -632,9 +632,9 @@ export default function ({
       }
       if (visuals.citeLinkColor && roamLink.type?.includes('cite')) {
         return needsHighlighting &&
-          (visuals.citeLinkHighlightColor || visuals.linkHighlight)
+          (visuals.citeLinkHighlightColor || visuals.highlight)
           ? highlightColors[visuals.citeLinkColor][
-              visuals.citeLinkHighlightColor || visuals.linkHighlight
+              visuals.citeLinkHighlightColor || visuals.highlightColor
             ](opacity)
           : highlightColors[visuals.citeLinkColor][visuals.backgroundColor](
               visuals.highlightFade * opacity

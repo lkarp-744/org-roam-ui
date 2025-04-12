@@ -36,17 +36,10 @@ export const HighlightingPanel = ({
       <Box paddingLeft={4} paddingTop={2} paddingBottom={2}>
         <ColorMenu
           colorList={colorList}
-          label="Link highlight"
+          label="highlighting color"
           setVisuals={setVisuals}
-          value="linkHighlight"
-          visValue={visuals.linkHighlight}
-        />
-        <ColorMenu
-          colorList={colorList}
-          label="Node highlight"
-          setVisuals={setVisuals}
-          value="nodeHighlight"
-          visValue={visuals.nodeHighlight}
+          value="highlightColor"
+          visValue={visuals.highlightColor}
         />
       </Box>
     </Collapse>

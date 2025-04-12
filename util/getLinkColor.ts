@@ -27,7 +27,7 @@ export const getLinkColor = ({
   cluster: any;
 }) => {
   if (
-    !visuals.linkHighlight &&
+    !visuals.highlight &&
     !visuals.linkColorScheme &&
     !needsHighlighting
   ) {
@@ -62,7 +62,7 @@ export const getLinkColor = ({
     );
   }
 
-  if (!visuals.linkHighlight && !visuals.linkColorScheme) {
+  if (!visuals.highlight && !visuals.linkColorScheme) {
     const nodeColor = getLinkNodeColor({
       sourceId,
       targetId,
@@ -74,7 +74,7 @@ export const getLinkColor = ({
     return getThemeColor(nodeColor, theme);
   }
 
-  if (!visuals.linkHighlight) {
+  if (!visuals.highlight) {
     return getThemeColor(visuals.linkColorScheme, theme);
   }
 
@@ -88,10 +88,10 @@ export const getLinkColor = ({
         coloring,
         cluster,
       })
-    ][visuals.linkHighlight](opacity);
+    ][visuals.highlightColor](opacity);
   }
 
-  return highlightColors[visuals.linkColorScheme][visuals.linkHighlight](
+  return highlightColors[visuals.linkColorScheme][visuals.highlightColor](
     opacity
   );
 };
