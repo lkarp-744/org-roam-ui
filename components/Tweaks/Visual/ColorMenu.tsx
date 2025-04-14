@@ -18,12 +18,15 @@ export interface ColorMenuProps {
   value: string;
   visValue: string;
   setVisuals?: any;
-  noEmpty?: boolean;
 }
 
-export const ColorMenu = (props: ColorMenuProps) => {
-  const { label, colorList, value, visValue, setVisuals, noEmpty } = props;
-
+export const ColorMenu = ({
+  label,
+  colorList,
+  value,
+  visValue,
+  setVisuals,
+}: ColorMenuProps) => {
   const clickCallback = useCallback(
     (color: string) =>
       setVisuals((curr: typeof initialVisuals) => {
@@ -53,23 +56,6 @@ export const ColorMenu = (props: ColorMenuProps) => {
         <Portal>
           <PopoverContent zIndex="tooltip" maxW={36} position="relative">
             <Flex flexWrap="wrap" bgColor="gray.200">
-              {!noEmpty && (
-                <Box
-                  onClick={() => clickCallback('')}
-                  justifyContent="space-between"
-                  alignItems="center"
-                  display="flex"
-                  m={1}
-                >
-                  <Box
-                    height={6}
-                    width={6}
-                    borderColor="gray.600"
-                    borderRadius="xl"
-                    borderWidth={1}
-                  ></Box>
-                </Box>
-              )}
               {colorList.map((color: string) => (
                 <Box
                   m={1}

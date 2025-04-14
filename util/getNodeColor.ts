@@ -76,7 +76,17 @@ export const getNodeColor = ({
       })
     ][visuals.backgroundColor](visuals.highlightFade * opacity);
   }
-  if (!visuals.nodeHighlight) {
+  if (visuals.highlight) {
+    return highlightColors[
+      getNodeColorById({
+        id: node.id as string,
+        cluster,
+        coloring,
+        linksByNodeId,
+        visuals,
+      })
+    ][visuals.highlightColor](opacity);
+  } else {
     return getThemeColor(
       getNodeColorById({
         id: node.id as string,
@@ -88,13 +98,4 @@ export const getNodeColor = ({
       theme
     );
   }
-  return highlightColors[
-    getNodeColorById({
-      id: node.id as string,
-      cluster,
-      coloring,
-      linksByNodeId,
-      visuals,
-    })
-  ][visuals.nodeHighlight](opacity);
 };
